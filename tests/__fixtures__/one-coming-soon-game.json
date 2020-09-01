@@ -1,0 +1,34 @@
+ {
+    "id": 1877,
+    "cover": {
+      "id": 82217,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1rft.jpg"
+    },
+    "first_release_date": 1605744000,
+    "name": "Cyberpunk 2077",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      },
+      {
+        "id": 167
+      },
+      {
+        "id": 169
+      },
+      {
+        "id": 170,
+        "abbreviation": "Stadia"
+      }
+    ],
+    "popularity": 570.2689843274221
+  }

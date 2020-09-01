@@ -7,7 +7,7 @@ mix.js("resources/js/app.js", "public/js")
         proxy: "video-game-aggregator.test",
         browser: "/home/antoine/.local/firefox-developer-edition/firefox",
     })
-mix.favicon({
-    blade: "resources/views/layouts/favicon.blade.php",
-    cleanUp: true,
-})
+    .favicon({
+        blade: "resources/views/layouts/favicon.blade.php",
+        cleanUp: true,
+    })

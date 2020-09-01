@@ -1,0 +1,27 @@
+{
+    "id": 107218,
+    "cover": {
+      "id": 81938,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1r82.jpg"
+    },
+    "first_release_date": 1592265600,
+    "name": "Desperados III",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      }
+    ],
+    "popularity": 33.09660679058292,
+    "rating": 89.9354092961466,
+    "rating_count": 10,
+    "summary": "The Wild West. A place where the law is made by those with a gun in their hands, and is enforced by the henchmen at their command. A place where death is no stranger and the undertakers are working overtime… especially when people start playing Desperados III. This real-time tactics game, developed by German game studio Mimimi Games (Shadow Tactics: Blades Of The Shogun), lets players command a band of Desperados led by fan-favourite gunslinger John Cooper."
+  }
