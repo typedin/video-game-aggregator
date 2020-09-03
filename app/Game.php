@@ -110,6 +110,11 @@ class Game
             return $this->defaultCoverUrls[$type];
         }
 
+        return $this->changeRequestedSizeOfImage(
+            $params["cover"]["url"],
+            $this->coverSizes[$type],
+            "thumb"
+        );
         return Str::replaceFirst('thumb', $this->coverSizes[$type], $params['cover']['url']);
     }
 
