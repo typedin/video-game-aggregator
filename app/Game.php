@@ -188,6 +188,11 @@ class Game
             ->pluck("url")
             ->filter()
             ->map(function ($url) {
+                return $this->changeRequestedSizeOfImage(
+                    "original",
+                    "thumb",
+                    $url
+                );
                 return Str::replaceFirst('thumb', "original", $url);
             })->toArray();
     }
