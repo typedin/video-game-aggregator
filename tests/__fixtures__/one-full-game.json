@@ -1,0 +1,442 @@
+{
+    "id": 126459,
+    "aggregated_rating": 78.3333333333333,
+    "cover": {
+        "id": 106754,
+        "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2ade.jpg"
+    },
+    "first_release_date": 1591056000,
+    "genres": [
+        {
+            "id": 5,
+            "name": "Shooter"
+        },
+        {
+            "id": 24,
+            "name": "Tactical"
+        }
+    ],
+    "involved_companies": [
+        {
+            "id": 98610,
+            "company": {
+                "id": 41,
+                "name": "Riot Games"
+            }
+        }
+    ],
+    "name": "VALORANT",
+    "platforms": [
+        {
+            "id": 6,
+            "abbreviation": "PC"
+        }
+    ],
+    "popularity": 1.0,
+    "rating": 79.8308993602521,
+    "screenshots": [
+        {
+            "id": 374596,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 698,
+            "image_id": "sc811g",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811g.jpg",
+            "width": 1240,
+            "checksum": "17c7fbf2-6bfb-453a-f094-5785020327d5"
+        },
+        {
+            "id": 374597,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 1152,
+            "image_id": "sc811h",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811h.jpg",
+            "width": 2048,
+            "checksum": "96797db6-00d3-8367-c598-24d13f9f325c"
+        },
+        {
+            "id": 374598,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 700,
+            "image_id": "sc811i",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811i.jpg",
+            "width": 1400,
+            "checksum": "37d7a82d-95e9-78c1-e354-f7cc5c5d50c1"
+        },
+        {
+            "id": 374599,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 1440,
+            "image_id": "sc811j",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811j.jpg",
+            "width": 2560,
+            "checksum": "d5d98c9a-2269-27d2-dd53-f1360b21b8a2"
+        },
+        {
+            "id": 374600,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 1080,
+            "image_id": "sc811k",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811k.jpg",
+            "width": 1920,
+            "checksum": "677c95e8-144c-4344-e359-0d4669ae0729"
+        },
+        {
+            "id": 374601,
+            "alpha_channel": false,
+            "animated": false,
+            "game": 126459,
+            "height": 920,
+            "image_id": "sc811l",
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc811l.jpg",
+            "width": 1634,
+            "checksum": "098c2e83-b5c2-08c6-a4db-75bc72b7a38d"
+        }
+    ],
+    "similar_games": [
+        {
+            "id": 13196,
+            "cover": {
+                "id": 81827,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1r4z.jpg"
+            },
+            "name": "Tears of Avia",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 14,
+                    "abbreviation": "Mac"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                }
+            ],
+            "slug": "tears-of-avia"
+        },
+        {
+            "id": 19164,
+            "cover": {
+                "id": 94287,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co20r3.jpg"
+            },
+            "name": "Borderlands 3",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                },
+                {
+                    "id": 170,
+                    "abbreviation": "Stadia"
+                }
+            ],
+            "rating": 79.3870135093934,
+            "slug": "borderlands-3"
+        },
+        {
+            "id": 55038,
+            "cover": {
+                "id": 82160,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1re8.jpg"
+            },
+            "name": "Immortal: Unchained",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                }
+            ],
+            "rating": 61.849710982659,
+            "slug": "immortal-unchained"
+        },
+        {
+            "id": 102057,
+            "cover": {
+                "id": 81887,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1r6n.jpg"
+            },
+            "name": "Age of Wonders: Planetfall",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                }
+            ],
+            "rating": 76.043674516187,
+            "slug": "age-of-wonders-planetfall"
+        },
+        {
+            "id": 103281,
+            "cover": {
+                "id": 111228,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2dto.jpg"
+            },
+            "name": "Halo Infinite",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                },
+                {
+                    "id": 169
+                }
+            ],
+            "slug": "halo-infinite"
+        },
+        {
+            "id": 103329,
+            "cover": {
+                "id": 112591,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2evj.jpg"
+            },
+            "name": "Control",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                },
+                {
+                    "id": 167
+                },
+                {
+                    "id": 169
+                }
+            ],
+            "rating": 85.39885219925321,
+            "slug": "control"
+        },
+        {
+            "id": 105269,
+            "cover": {
+                "id": 82218,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1rfu.jpg"
+            },
+            "name": "Gene Rain",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                }
+            ],
+            "slug": "gene-rain"
+        },
+        {
+            "id": 107318,
+            "cover": {
+                "id": 113273,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2feh.jpg"
+            },
+            "name": "Rebel Galaxy Outlaw",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                },
+                {
+                    "id": 130,
+                    "abbreviation": "Switch"
+                }
+            ],
+            "slug": "rebel-galaxy-outlaw"
+        },
+        {
+            "id": 113114,
+            "cover": {
+                "id": 111992,
+                "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2eew.jpg"
+            },
+            "name": "The Outer Worlds",
+            "platforms": [
+                {
+                    "id": 6,
+                    "abbreviation": "PC"
+                },
+                {
+                    "id": 48,
+                    "abbreviation": "PS4"
+                },
+                {
+                    "id": 49,
+                    "abbreviation": "XONE"
+                },
+                {
+                    "id": 130,
+                    "abbreviation": "Switch"
+                },
+                {
+                    "id": 169
+                }
+            ],
+            "rating": 85.5323253355224,
+            "slug": "the-outer-worlds"
+        }
+    ],
+    "slug": "valorant",
+    "summary": "Imagine this: tactical shooter meets hypernatural powers. Everyone’s got guns and a unique set of abilities, so how do you beat someone with the speed of wind? Use your own moves to outplay them and beat them to the shot. VALORANT is a game for bold strategists who dare to make the unexpected play, because if it wins, it works.",
+    "videos": [
+        {
+            "id": 31488,
+            "game": 126459,
+            "name": "Trailer",
+            "video_id": "4iGU6PctOBg",
+            "checksum": "125efe8f-599d-c299-316c-5135e7ea69dd"
+        },
+        {
+            "id": 34222,
+            "game": 126459,
+            "name": "Gameplay Trailer",
+            "video_id": "g8amyzDHOKw",
+            "checksum": "10c02b78-587c-108b-8c60-b4291d35948d"
+        },
+        {
+            "id": 38114,
+            "game": 126459,
+            "name": "Trailer",
+            "video_id": "e_E9W2vsRbQ",
+            "checksum": "5eac53b1-6d9d-e580-0ccb-8bd116a84911"
+        }
+    ],
+    "websites": [
+        {
+            "id": 136789,
+            "category": 4,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://www.facebook.com/PlayVALORANT",
+            "checksum": "24f338bd-9c46-5168-fb5b-05e9278e0ca6"
+        },
+        {
+            "id": 137847,
+            "category": 14,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://www.reddit.com/r/VALORANT",
+            "checksum": "e393ed05-af0b-78e2-333c-0261c9e1a94a"
+        },
+        {
+            "id": 138017,
+            "category": 3,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://en.wikipedia.org/wiki/Valorant",
+            "checksum": "1325811b-bef3-7761-d7a2-e3d6b106db5f"
+        },
+        {
+            "id": 139755,
+            "category": 1,
+            "game": 126459,
+            "trusted": false,
+            "url": "https://playvalorant.com/",
+            "checksum": "c445ed9f-3cdd-27cf-33e9-ed8f3b42c1a2"
+        },
+        {
+            "id": 139756,
+            "category": 2,
+            "game": 126459,
+            "trusted": false,
+            "url": "https://valorant.fandom.com/wiki/Valorant_Wiki",
+            "checksum": "1344ea7d-3dd2-be18-df78-e44c0b292fa8"
+        },
+        {
+            "id": 144917,
+            "category": 5,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://twitter.com/PlayVALORANT",
+            "checksum": "9f584091-abaf-942b-7e9f-3695d133bf57"
+        },
+        {
+            "id": 144918,
+            "category": 6,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://www.twitch.tv/VALORANT",
+            "checksum": "a0b8f224-1509-8761-8213-a6ccb8633b54"
+        },
+        {
+            "id": 144919,
+            "category": 8,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://www.instagram.com/PlayVALORANTOfficial",
+            "checksum": "ac309dff-6e01-8b88-fd02-97b237ba6f31"
+        },
+        {
+            "id": 144920,
+            "category": 9,
+            "game": 126459,
+            "trusted": true,
+            "url": "https://www.youtube.com/PlayVALORANT",
+            "checksum": "99f9f348-cd50-54ee-2552-0b8a2bb6a34d"
+        },
+        {
+            "id": 144921,
+            "category": 18,
+            "game": 126459,
+            "trusted": false,
+            "url": "https://discord.com/invite/VALORANT",
+            "checksum": "26f12ca9-4aec-a1e1-20b3-56e4526c8b72"
+        }
+    ]
+}

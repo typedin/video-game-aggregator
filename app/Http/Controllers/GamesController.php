@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -45,9 +46,21 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $game = Http::withHeaders(config("services.igdb"))
+                ->withOptions([
+                    "body" => "
+                        fields name, cover.url, first_release_date, popularity, platforms.abbreviation, rating, slug, involved_companies.company.name, genres.name, aggregated_rating, summary, websites.*, videos.*, screenshots.*, similar_games.cover.url, similar_games.name, similar_games.rating, similar_games.platforms.abbreviation, similar_games.slug; 
+                        where slug=\"{$slug}\";
+                "])->get("https://api-v3.igdb.com/games/")
+                ->json()[0];
+        
+        abort_if(!$game, 404);
+
+        return view("show", [
+            //$game => Game::full($game)
+        ]);
     }
 
     /**
