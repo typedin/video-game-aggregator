@@ -193,7 +193,6 @@ class Game
                     "thumb",
                     $url
                 );
-                return Str::replaceFirst('thumb', "original", $url);
             })->toArray();
     }
     
