@@ -59,6 +59,9 @@ class Game
         $game->companies = $game->formatCompanies($params);
         $game->similarGames = $game->enrichSimilarGames($params);
 
+        $game->trailers = $game->formatTraillers($params);
+    
+        $game->socials = $game->enrichSocials($params);
         return $game;
     }
 
@@ -194,17 +197,19 @@ class Game
             ->pluck("url")
             ->filter()
             ->map(function ($url) {
-                return $this->changeRequestedSizeOfImage(
-                    $url,
-                    "original",
-                    "thumb"
-                );
-            })->toArray();
+                return
+                    [
+    "huge" => $this->changeRequestedSizeOfImage($url, "original", "thumb"),
+    "big" => $this->changeRequestedSizeOfImage($url, "cover_big", "thumb"),
+                ];
+            })
+            ->take(9)
+            ->toArray();
     }
     
     private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
     {
-        return Str::replaceFirst('thumb', $needle, $url);
+        return Str::replaceFirst($haystack, $needle, $url);
     }
 
     private function enrichSimilarGames($params)
@@ -223,6 +228,46 @@ class Game
             $result[] = $game;
         }
 
-        return collect($result);
+        return collect($result)->take(6);
+    }
+
+    private function formatTraillers(array $params): Collection
+    {
+        return collect($params["videos"])
+            ->map(function ($video) {
+                return "https://youtube.com/watch/".$video["video_id"];
+            });
+    }
+
+    private function enrichSocials(array $params): Collection
+    {
+        $websites = collect($params["websites"]);
+
+        $website = $websites->filter(
+            fn ($website) =>
+            $website["category"] == 1
+        )->pluck("url")->first();
+
+        $facebook = $websites->filter(
+            fn ($website) =>
+            $website["category"] == 4
+        )->pluck("url")->first();
+
+        $twitter = $websites->filter(
+            fn ($website) =>
+            $website["category"] == 5
+        )->pluck("url")->first();
+
+        $instagram = $websites->filter(
+            fn ($website) =>
+            $website["category"] == 8
+        )->pluck("url")->first();
+        
+        return collect([
+            "website" => $website,
+            'twitter' => $twitter,
+            'facebook' => $facebook,
+            'instagram' => $instagram,
+        ]);
     }
 }

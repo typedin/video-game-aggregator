@@ -32,6 +32,7 @@ class FullGameTest extends TestCase
         );
     }
 
+
     /**
      * @test
      */
@@ -46,8 +47,31 @@ class FullGameTest extends TestCase
 
         $this->assertEquals(6, count($game->screenshots));
         $this->assertEquals(
+            "//images.igdb.com/igdb/image/upload/t_cover_big/sc811g.jpg",
+            $game->screenshots[0]["big"]
+        );
+        $this->assertEquals(
             "//images.igdb.com/igdb/image/upload/t_original/sc811g.jpg",
-            $game->screenshots[0]
+            $game->screenshots[0]["huge"]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_have_trailler()
+    {
+        $decodedJson = json_decode(
+            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
+            true
+        );
+
+        $game = Game::full($decodedJson);
+
+        $this->assertEquals(3, count($game->trailers));
+        $this->assertEquals(
+            "https://youtube.com/watch/4iGU6PctOBg",
+            $game->trailers->first()
         );
     }
 
@@ -63,6 +87,24 @@ class FullGameTest extends TestCase
 
         $game = Game::full($decodedJson);
 
-        $this->assertEquals(9, count($game->similarGames));
+        $this->assertEquals(6, count($game->similarGames));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_have_socials()
+    {
+        $decodedJson = json_decode(
+            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
+            true
+        );
+
+        $game = Game::full($decodedJson);
+
+        $this->assertEquals(3, count($game->socials));
+        $this->assertEquals("https://playvalorant.com/", $game->socials["website"]);
+        $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->socials["facebook"]);
+        $this->assertEquals("https://www.instagram.com/PlayVALORANTOfficial", $game->socials["instagram"]);
     }
 }
