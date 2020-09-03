@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * Class Game
@@ -17,11 +18,25 @@ class Game
         "recentlyReviewed" => "/img/default-recently-reviewed-game.jpg",
     ];
 
+    private $coverSizes = [
+        "popular" => "cover_big",
+        "comingSoon" => "cover_small",
+        "mostAnticipated" => "cover_small",
+        "recentlyReviewed" => "cover_big",
+    ];
+
+
+    public $name;
+
+    private function __construct(array $params)
+    {
+        $this->name = $params["name"];
+    }
+
     public static function popular(array $params): Game
     {
-        $game = new Game();
+        $game = new Game($params);
 
-        $game->name = $params["name"];
         $game->platforms = $game->formatPlaforms($params);
         $game->rating = $game->formatRatingOrDefault($params);
         $game->releaseDate = $game->formatDateOrDefault($params);
@@ -32,9 +47,8 @@ class Game
 
     public static function recentlyReviewed(array $params): Game
     {
-        $game = new Game();
+        $game = new Game($params);
 
-        $game->name = $params["name"];
         $game->platforms = $game->formatPlaforms($params);
         $game->rating = $game->formatRatingOrDefault($params);
         $game->summary = $game->passedSummaryOrDefault($params);
@@ -45,9 +59,8 @@ class Game
     
     public static function mostAnticipated(array $params): Game
     {
-        $game = new Game();
+        $game = new Game($params);
 
-        $game->name = $params["name"];
         $game->releaseDate = $game->formatDateOrDefault($params);
         $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
 
@@ -56,9 +69,8 @@ class Game
 
     public static function comingSoon(array $params): Game
     {
-        $game = new Game();
+        $game = new Game($params);
 
-        $game->name = $params["name"];
         $game->releaseDate = $game->formatDateOrDefault($params);
         $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
 
@@ -70,7 +82,8 @@ class Game
         if (! isset($params["cover"]["url"])) {
             return $this->defaultCoverUrls[$type];
         }
-        return $params["cover"]["url"];
+
+        return Str::replaceFirst('thumb', $this->coverSizes[$type], $params['cover']['url']);
     }
 
     private function formatPlaforms(array $params): String

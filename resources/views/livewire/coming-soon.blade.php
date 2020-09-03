@@ -6,16 +6,16 @@
     <div class="mt-8 coming-soon-container space-y-10">
       <div class="flex game">
         <a href="#">
-          @if (array_key_exists("cover", $game))
-            <img src="{{ Str::replaceFirst('thumb', 'cover_small', $game['cover']['url']) }}"
-                 alt="game cover"
-                 class="w-16 hover:opacity-75 transition ease-in-out duration-150"
-                 >
-               @endif
+          <img src="{{ $game->coverUrl }}"
+               alt="game cover"
+               class="w-16 hover:opacity-75 transition ease-in-out duration-150"
+               >
         </a>
         <div class="ml-4">
-          <a href="#" class="hover:text-gray-300">{{ $game["name"] }}</a>
-          <div class="mt-1 text-sm text-gray-400">Sept 16, 2020</div>
+          <a href="#" class="hover:text-gray-300">{{ $game->name }}</a>
+          <div class="mt-1 text-sm text-gray-400">
+            {{ $game->releaseDate }}
+</div>
         </div>
       </div>
     </div>

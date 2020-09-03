@@ -7,21 +7,19 @@
       <div class="mt-8 game">
         <div class="relative inline-block">
           <a href="#">
-            <img src="{{ $game["coverImageUrl"] }}" alt="Valorant" class="hover:opacity-75 transition ease-in-out duration-150"/>
+            <img src="{{ $game->coverUrl }}" alt="Valorant" class="hover:opacity-75 transition ease-in-out duration-150"/>
           </a>
-          @if ($game["rating"])
             <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right: -20px; bottom: -20px;">
               <div class="flex items-center justify-center h-full text-xs font-semibold">
-                {{ $game["rating"] }}
+                {{ $game->rating }}
               </div>
             </div>
-          @endif
         </div>
         <a class="block mt-8 text-base font-semibold leading-tight hover:text-gray-400" href="#">
-          {{ $game["name"] }}
+          {{ $game->name }}
         </a>
         <div class="mt-1 text-gray-400">
-            {{ $game["platforms"] }}
+          {{ $game->platforms }}
         </div>
       </div>
     @empty

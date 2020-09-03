@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Game;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -16,7 +18,7 @@ class RecentlyReviewed extends Component
         $today = Carbon::now()->timestamp;
         $before = Carbon::now()->subMonths(2)->timestamp;
 
-        $this->recentlyReviewed = Cache::remember("popular-games", 7, function () use ($before, $today) {
+        $unformattedGames = Cache::remember("popular-games", 0, function () use ($before, $today) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -31,8 +33,18 @@ class RecentlyReviewed extends Component
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
         });
+
+        $this->recentlyReviewed = $this->format($unformattedGames)->toArray();
     }
 
+    private function format($unformattedGames): Collection
+    {
+        $result = [];
+        foreach ($unformattedGames as $data) {
+            $result[] = Game::recentlyReviewed($data);
+        }
+        return collect($result);
+    }
     public function render()
     {
         return view('livewire.recently-reviewed');
