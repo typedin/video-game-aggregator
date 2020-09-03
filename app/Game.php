@@ -198,7 +198,7 @@ class Game
     
     private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
     {
-        return Str::replaceFirst('thumb', "original", $url);
+        return Str::replaceFirst('thumb', $needle, $url);
     }
 
     private function enrichSimilarGames($params)
