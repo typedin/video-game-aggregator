@@ -189,14 +189,14 @@ class Game
             ->filter()
             ->map(function ($url) {
                 return $this->changeRequestedSizeOfImage(
+                    $url,
                     "original",
-                    "thumb",
-                    $url
+                    "thumb"
                 );
             })->toArray();
     }
     
-    private function changeRequestedSizeOfImage($needle, $haystack="thumb", $url)
+    private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
     {
         return Str::replaceFirst('thumb', "original", $url);
     }
