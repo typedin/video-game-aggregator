@@ -6,7 +6,7 @@
     @forelse($popularGames as $game)
       <div class="mt-8 game">
         <div class="relative inline-block">
-          <a href="/show/factorio">
+          <a href="/show/{{ $game->slug }}">
             <img src="{{ $game->coverUrl }}" alt="Valorant" class="hover:opacity-75 transition ease-in-out duration-150"/>
           </a>
             <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right: -20px; bottom: -20px;">

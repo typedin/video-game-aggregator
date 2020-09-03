@@ -6,7 +6,7 @@
     @forelse($recentlyReviewed as $game)
       <div class="flex px-6 py-6 bg-gray-800 rounded-lg shadow-md game">
         <div class="relative flex-none">
-          <a href="#">
+          <a href="/show/{{ $game->slug }}">
             <img src="{{ $game->coverUrl }}" alt="game cover" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
           </a>
           <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full" style="right: -20px; bottom: -20px">

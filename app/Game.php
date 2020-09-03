@@ -35,12 +35,14 @@ class Game
     {
         // should throw here
         $this->name = $params["name"];
+        $this->slug = $params["slug"];
     }
     
     public static function full($params): Game
     {
         $game = new Game($params);
 
+        $game->summary = $game->passedSummaryOrDefault($params);
         $game->platforms = $game->formatPlaforms($params);
         $game->genres = $game->formatGenresOrDefault($params);
         $game->screenshots = $game->parseScreenshots($params);
@@ -115,7 +117,6 @@ class Game
             $this->coverSizes[$type],
             "thumb"
         );
-        return Str::replaceFirst('thumb', $this->coverSizes[$type], $params['cover']['url']);
     }
 
     private function formatGenresOrDefault($params): string
@@ -214,6 +215,10 @@ class Game
             $game->platforms = $game->formatPlaforms($data);
             $game->slug = $data["slug"];
             $game->coverUrl = $game->passedCoverUrlOrDefault($data, "popular");
+            $game->rating = $game->formatRatingOrDefault(
+                $data,
+                "rating"
+            );
 
             $result[] = $game;
         }
