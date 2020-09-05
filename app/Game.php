@@ -24,12 +24,13 @@ class Game
         "full" => "cover_big",
         "popular" => "cover_big",
         "comingSoon" => "cover_small",
-        "mostAnticipated" => "cover_small",
         "recentlyReviewed" => "cover_big",
+        "mostAnticipated" => "cover_small",
     ];
 
 
     public $name;
+    public $slug;
 
     private function __construct(array $params)
     {
