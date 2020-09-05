@@ -102,9 +102,10 @@ class FullGameTest extends TestCase
 
         $game = Game::full($decodedJson);
 
-        $this->assertEquals(3, count($game->socials));
+        $this->assertEquals(4, count($game->socials));
         $this->assertEquals("https://playvalorant.com/", $game->socials["website"]);
         $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->socials["facebook"]);
+        $this->assertEquals("https://twitter.com/PlayVALORANT", $game->socials["twitter"]);
         $this->assertEquals("https://www.instagram.com/PlayVALORANTOfficial", $game->socials["instagram"]);
     }
 }

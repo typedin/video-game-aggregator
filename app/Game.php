@@ -5,10 +5,11 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use App\Social;
 
 /**
  * Class Game
- * @author yourname
+ * @author typedin
  */
 class Game
 {
@@ -38,7 +39,7 @@ class Game
         $this->name = $params["name"];
         $this->slug = $params["slug"];
     }
-    
+
     public static function full($params): Game
     {
         $game = new Game($params);
@@ -61,8 +62,8 @@ class Game
         $game->similarGames = $game->enrichSimilarGames($params);
 
         $game->trailers = $game->formatTraillers($params);
-    
-        $game->socials = $game->enrichSocials($params);
+
+        $game->socials = Social::createFromApiResponse($params);
         return $game;
     }
 
@@ -89,7 +90,7 @@ class Game
 
         return $game;
     }
-    
+
     public static function mostAnticipated(array $params): Game
     {
         $game = new Game($params);
@@ -128,9 +129,9 @@ class Game
         return join(
             ', ',
             collect($params["genres"])
-                ->pluck("name")
-                ->filter()
-                ->toArray()
+    ->pluck("name")
+    ->filter()
+    ->toArray()
         );
     }
 
@@ -139,9 +140,9 @@ class Game
         return join(
             ', ',
             collect($params["platforms"])
-                ->pluck("abbreviation")
-                ->filter()
-                ->toArray()
+    ->pluck("abbreviation")
+    ->filter()
+    ->toArray()
         );
     }
 
@@ -150,9 +151,9 @@ class Game
         return join(
             ', ',
             collect($params["involved_companies"])
-                ->pluck("company.name")
-                ->filter()
-                ->toArray()
+    ->pluck("company.name")
+    ->filter()
+    ->toArray()
         );
     }
 
@@ -200,14 +201,14 @@ class Game
             ->map(function ($url) {
                 return
                     [
-    "huge" => $this->changeRequestedSizeOfImage($url, "original", "thumb"),
-    "big" => $this->changeRequestedSizeOfImage($url, "cover_big", "thumb"),
-                ];
+                        "huge" => $this->changeRequestedSizeOfImage($url, "original", "thumb"),
+                        "big" => $this->changeRequestedSizeOfImage($url, "cover_big", "thumb"),
+                    ];
             })
             ->take(9)
             ->toArray();
     }
-    
+
     private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
     {
         return Str::replaceFirst($haystack, $needle, $url);
@@ -238,37 +239,5 @@ class Game
             ->map(function ($video) {
                 return "https://youtube.com/watch/".$video["video_id"];
             });
-    }
-
-    private function enrichSocials(array $params): Collection
-    {
-        $websites = collect($params["websites"]);
-
-        $website = $websites->filter(
-            fn ($website) =>
-            $website["category"] == 1
-        )->pluck("url")->first();
-
-        $facebook = $websites->filter(
-            fn ($website) =>
-            $website["category"] == 4
-        )->pluck("url")->first();
-
-        $twitter = $websites->filter(
-            fn ($website) =>
-            $website["category"] == 5
-        )->pluck("url")->first();
-
-        $instagram = $websites->filter(
-            fn ($website) =>
-            $website["category"] == 8
-        )->pluck("url")->first();
-        
-        return collect([
-            "website" => $website,
-            'twitter' => $twitter,
-            'facebook' => $facebook,
-            'instagram' => $instagram,
-        ]);
     }
 }

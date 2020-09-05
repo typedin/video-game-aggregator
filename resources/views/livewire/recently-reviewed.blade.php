@@ -1,5 +1,5 @@
 <div wire:init="load">
-  <h2 class="font-semibold tracking-wide text-blue-500 uppercase">
+  <h2 class="section-title">
     Recently Reviewed
   </h2>
   <div class="mt-8 recently-reviewed-container space-y-12">

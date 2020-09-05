@@ -1,5 +1,5 @@
 <div wire:init="load">
-  <h2 class="font-semibold tracking-wide text-blue-500 uppercase">
+  <h2 class="section-title">
     Most Anticipated
   </h2>
   @forelse($mostAnticipated as $game)
@@ -12,7 +12,11 @@
           >
           </a>
         <div class="ml-4">
-          <a href="/show/{{ $game->slug }}" class="hover:text-gray-300">{{ $game->name }}</a>
+          <h3 class="game-title">
+            <a href="/show/{{ $game->slug }}"
+               >{{ $game->name }}
+            </a>
+          </h3>
           <div class="mt-1 text-sm text-gray-400">
             {{ $game->releaseDate }}
             </div>

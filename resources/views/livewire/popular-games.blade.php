@@ -1,5 +1,5 @@
 <div wire:init="load">
-  <h2 class="font-semibold tracking-wide text-blue-500 uppercase">
+  <h2 class="section-title">
     Popular Games
   </h2>
   <div class="pb-16 text-sm border-b border-gray-800 popular-games grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
@@ -15,9 +15,13 @@
               </div>
             </div>
         </div>
-        <a class="block mt-8 text-base font-semibold leading-tight hover:text-gray-400" href="#">
-          {{ $game->name }}
-        </a>
+        <h3 class="mt-8 game-title">
+          <a
+            class="block"
+            href="/show/{{ $game->slug }}"
+            >{{ $game->name }}
+          </a>
+        </h3>
         <div class="mt-1 text-gray-400">
           {{ $game->platforms }}
         </div>

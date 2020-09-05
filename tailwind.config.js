@@ -1,3 +1,4 @@
+const plugin = require("tailwindcss/plugin")
 module.exports = {
     purge: [],
     theme: {
@@ -6,20 +7,28 @@ module.exports = {
                 44: "11rem",
             },
         },
-        spinner: () => ({
-            default: {
-                color: "#dae1e7",
-                size: "1em",
-                border: "2px",
-                speed: "500ms",
-            },
-        }),
     },
     variants: {},
     plugins: [
-        require("tailwindcss-spinner")({
-            className: "spinner",
-            themeKey: "spinner",
+        plugin(function ({ addComponents, theme }) {
+            const titles = {
+                ".section-title": {
+                    color: theme("colors.blue.500"),
+                    fontWeight: theme("fontWeight.semibold"),
+                    letterSpacing: theme("letterSpacing.wide"),
+                    textTransform: "uppercase",
+                },
+                ".game-title": {
+                    color: theme("colors.white"),
+                    fontSize: theme("fontSize.base"),
+                    fontWeight: theme("fontWeight.semibold"),
+                    lineHeight: theme("lineHeight.tight"),
+                    "&:hover": {
+                        color: theme("colors.gray.400"),
+                    },
+                },
+            }
+            addComponents(titles)
         }),
     ],
 }
