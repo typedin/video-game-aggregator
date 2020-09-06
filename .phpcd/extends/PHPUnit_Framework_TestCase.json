@@ -1,1 +1,1 @@
-["Tests\\Unit\\GamePresenterTest","Tests\\Unit\\GameTest","Tests\\Unit\\FullGameTest","Tests\\Unit\\ParamsForSocialTest","Tests\\Unit\\UrlTest","Tests\\Unit\\PopularGameTest","Tests\\Unit\\CommonGameTest"]
+["Tests\\Unit\\GamePresenterTest","Tests\\Unit\\GameTest","Tests\\Unit\\FullGameTest","Tests\\Unit\\ParamsForSocialTest","Tests\\Unit\\UrlTest","Tests\\Unit\\PopularGameTest","Tests\\Unit\\CommonGameTest","Tests\\Unit\\SocialTest"]

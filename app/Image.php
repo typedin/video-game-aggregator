@@ -59,7 +59,7 @@ class Image
         return $this->changeRequestedSizeOfImage($this->url, "cover_big");
     }
 
-    private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
+    private static function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
     {
         return Str::replaceFirst($haystack, $needle, $url);
     }

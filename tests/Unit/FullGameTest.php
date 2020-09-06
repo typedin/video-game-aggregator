@@ -74,9 +74,7 @@ class FullGameTest extends TestCase
             true
         );
 
-        $basicGame = new BaseGame($decodedJson);
-        $commonGame = new CommonGame($basicGame, $decodedJson);
-        $game = new FullGame($commonGame, $decodedJson);
+        $game = new FullGame(new CommonGame(new BaseGame($decodedJson)));
 
 
         $this->assertEquals(3, count($game->trailers));
@@ -84,6 +82,22 @@ class FullGameTest extends TestCase
             "https://youtube.com/watch/4iGU6PctOBg",
             $game->trailers->first()
         );
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_handle_response_with_no_video()
+    {
+        $decodedJsonWithNoVideo = json_decode(
+            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
+            true
+        );
+        unset($decodedJsonWithNoVideo["videos"]);
+
+        $game = new FullGame(new CommonGame(new BaseGame($decodedJsonWithNoVideo)));
+
+        $this->assertEquals(0, count($game->trailers));
     }
 
     /**
@@ -120,9 +134,6 @@ class FullGameTest extends TestCase
         $game = new FullGame($commonGame, $decodedJson);
 
         $this->assertEquals(4, count($game->socials));
-        $this->assertEquals("https://playvalorant.com/", $game->socials["website"]);
-        $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->socials["facebook"]);
-        $this->assertEquals("https://twitter.com/PlayVALORANT", $game->socials["twitter"]);
-        $this->assertEquals("https://www.instagram.com/PlayVALORANTOfficial", $game->socials["instagram"]);
+        $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->socials[0]->url);
     }
 }

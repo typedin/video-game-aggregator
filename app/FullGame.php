@@ -125,6 +125,9 @@ class FullGame implements Game
 
     private function formatTrailers(): Collection
     {
+        if (!array_key_exists("videos", $this->getParams())) {
+            return collect([]);
+        }
         return collect($this->getParams()["videos"])
             ->map(function ($video) {
                 return "https://youtube.com/watch/".$video["video_id"];

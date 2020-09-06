@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\BaseGame;
+use App\CommonGame;
+use App\FullGame;
 use App\Game;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -58,8 +61,10 @@ class GamesController extends Controller
         
         abort_if(!$data, 404);
 
+        $game = new FullGame(new CommonGame(new BaseGame($data)));
+
         return view("show", [
-            'game' => Game::full($data)
+            'game' => $game
         ]);
     }
 

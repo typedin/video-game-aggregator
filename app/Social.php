@@ -30,6 +30,12 @@ class Social
         ];
 
 
+    public function __construct(array $params)
+    {
+        $this->name = $params["name"];
+        $this->url = $params["url"];
+    }
+
     public static function createFromApiResponse(array $params): Collection
     {
         return collect($params["websites"])
@@ -37,14 +43,11 @@ class Social
                 "category",
                 collect(self::lookupTable)->pluck("category")
             )
-            ->mapWithKeys(
-                fn ($website) => [
-                    collect(self::lookupTable)->where(
-                        "category",
-                        $website["category"]
-                    )->pluck("name")->first()
-                    => $website["url"]
-                ]
-            );
+            ->map(function ($website) {
+                return new Social([
+                    "url" => $website["url"],
+                    "name" => collect(self::lookupTable)->where("category", $website["category"])->pluck("name")->first(),
+                ]);
+            })->values();
     }
 }
