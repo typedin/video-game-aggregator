@@ -3,31 +3,29 @@
 namespace App;
 
 use App\Contracts\Game;
-use App\Social;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
-/**
- * Class Game
- * @author typedin
- */
-class CommonGame implements Game
+class PopularGame implements Game
 {
-    protected $game;
+    private $game;
 
-    public $rating;
+    public $cover;
     public $platforms;
+    public $rating;
     public $releaseDate;
+    public $summary;
 
-    public function __construct(Game $game)
+
+    public function __construct($game)
     {
         $this->game = $game;
         $this->rating = $this->formatRatingOrDefault("rating");
-        $this->platforms = $this->formatPlaforms();
+        $this->cover = Image::cover($this->getParams(), "popular");
         $this->releaseDate = $this->formatDateOrDefault();
+        $this->platforms = $this->formatPlaforms();
+        $this->summary = $this->formatSummaryOrDefault();
     }
-    
+
     public function getName(): String
     {
         return $this->game->getName();
@@ -35,8 +33,9 @@ class CommonGame implements Game
 
     public function getSlug(): String
     {
-        return $this->game->getSlug();
+        return $this->game->slug;
     }
+
 
     public function getParams(): array
     {
@@ -63,5 +62,14 @@ class CommonGame implements Game
         }
 
         return Rating::toString($this->getParams()[$key]);
+    }
+
+    private function formatSummaryOrDefault()
+    {
+        if (! isset($this->getParams()["summary"])) {
+            return "No summary yet";
+        }
+
+        return $this->getParams()["summary"];
     }
 }

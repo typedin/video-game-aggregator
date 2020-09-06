@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Game;
+use App\BaseGame;
+use App\FullGame;
+use App\CommonGame;
 use PHPUnit\Framework\TestCase;
 
 class FullGameTest extends TestCase
@@ -17,14 +19,18 @@ class FullGameTest extends TestCase
             true
         );
 
-        $game = Game::full($decodedJson);
+        $game = new FullGame(
+            new CommonGame(
+                new BaseGame($decodedJson)
+            )
+        );
 
         $this->assertEquals("80%", $game->rating);
-        $this->assertEquals("PC", $game->platforms);
-        $this->assertEquals("VALORANT", $game->name);
+        $this->assertEquals("PC", $game->getPlatforms());
+        $this->assertEquals("VALORANT", $game->getName());
         $this->assertEquals("78%", $game->memberRating);
         $this->assertEquals("Riot Games", $game->companies);
-        $this->assertEquals("Jun 02, 2020", $game->releaseDate);
+        $this->assertEquals("Jun 02, 2020", $game->getReleaseDate());
         $this->assertEquals("Shooter, Tactical", $game->genres);
         $this->assertEquals(
             "//images.igdb.com/igdb/image/upload/t_cover_big/co2ade.jpg",
@@ -43,7 +49,9 @@ class FullGameTest extends TestCase
             true
         );
 
-        $game = Game::full($decodedJson);
+        $basicGame = new BaseGame($decodedJson);
+        $commonGame = new CommonGame($basicGame, $decodedJson);
+        $game = new FullGame($commonGame, $decodedJson);
 
         $this->assertEquals(6, count($game->screenshots));
         $this->assertEquals(
@@ -66,7 +74,10 @@ class FullGameTest extends TestCase
             true
         );
 
-        $game = Game::full($decodedJson);
+        $basicGame = new BaseGame($decodedJson);
+        $commonGame = new CommonGame($basicGame, $decodedJson);
+        $game = new FullGame($commonGame, $decodedJson);
+
 
         $this->assertEquals(3, count($game->trailers));
         $this->assertEquals(
@@ -85,9 +96,13 @@ class FullGameTest extends TestCase
             true
         );
 
-        $game = Game::full($decodedJson);
+        $basicGame = new BaseGame($decodedJson);
+        $commonGame = new CommonGame($basicGame, $decodedJson);
+        $game = new FullGame($commonGame, $decodedJson);
 
         $this->assertEquals(6, count($game->similarGames));
+        $this->assertEquals("Tears of Avia", $game->similarGames[0]->getName());
+        $this->assertEquals("tears-of-avia", $game->similarGames[0]->getSlug());
     }
 
     /**
@@ -100,7 +115,9 @@ class FullGameTest extends TestCase
             true
         );
 
-        $game = Game::full($decodedJson);
+        $basicGame = new BaseGame($decodedJson);
+        $commonGame = new CommonGame($basicGame, $decodedJson);
+        $game = new FullGame($commonGame, $decodedJson);
 
         $this->assertEquals(4, count($game->socials));
         $this->assertEquals("https://playvalorant.com/", $game->socials["website"]);

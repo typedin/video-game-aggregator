@@ -1,1 +1,1 @@
-["App\\Presenter\\GamePresenter","App\\Game","App\\Social","App\\ParamsForSocial","App\\Image"]
+["App\\Presenter\\GamePresenter","App\\Game","App\\Social","App\\ParamsForSocial","App\\Image","App\\Url","App\\Rating","App\\GameInterface","App\\FullGame","App\\SimilarGame","App\\PopularGame","App\\CommonGame","App\\Contracts\\Game","App\\BaseGame"]
