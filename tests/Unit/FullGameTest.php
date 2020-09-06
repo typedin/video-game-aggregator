@@ -28,7 +28,7 @@ class FullGameTest extends TestCase
         $this->assertEquals("Shooter, Tactical", $game->genres);
         $this->assertEquals(
             "//images.igdb.com/igdb/image/upload/t_cover_big/co2ade.jpg",
-            $game->coverUrl
+            $game->cover->url
         );
     }
 

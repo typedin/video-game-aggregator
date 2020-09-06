@@ -20,7 +20,7 @@ class GameTest extends TestCase
         $this->assertEquals("Cyberpunk 2077", $game->name);
         $this->assertEquals("Nov 19, 2020", $game->releaseDate);
         $this->assertEquals("PC, PS4, XONE, Stadia", $game->platforms);
-        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_big/co1rft.jpg", $game->coverUrl);
+        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_big/co1rft.jpg", $game->cover->url);
     }
 
     /**
@@ -36,7 +36,7 @@ class GameTest extends TestCase
         $this->assertEquals("Desperados III", $game->name);
         $this->assertEquals("PC, PS4, XONE", $game->platforms);
         $this->assertStringContainsString("The Wild West.", $game->summary);
-        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_big/co1r82.jpg", $game->coverUrl);
+        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_big/co1r82.jpg", $game->cover->url);
     }
 
     /**
@@ -50,7 +50,7 @@ class GameTest extends TestCase
 
         $this->assertEquals("Cyberpunk 2077", $game->name);
         $this->assertEquals("Nov 19, 2020", $game->releaseDate);
-        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_small/co1rft.jpg", $game->coverUrl);
+        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_small/co1rft.jpg", $game->cover->url);
     }
 
     /**
@@ -64,7 +64,7 @@ class GameTest extends TestCase
 
         $this->assertEquals("Cyberpunk 2077", $game->name);
         $this->assertEquals("Nov 19, 2020", $game->releaseDate);
-        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_small/co1rft.jpg", $game->coverUrl);
+        $this->assertEquals("//images.igdb.com/igdb/image/upload/t_cover_small/co1rft.jpg", $game->cover->url);
     }
 
     /**
@@ -77,7 +77,7 @@ class GameTest extends TestCase
 
         $game = Game::popular($decodedJsonWithoutCoverUrl);
 
-        $this->assertEquals("/img/default-popular-game.jpg", $game->coverUrl);
+        $this->assertEquals("/img/default-popular-game.jpg", $game->cover->url);
     }
 
     /**

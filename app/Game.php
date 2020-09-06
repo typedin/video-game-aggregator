@@ -13,23 +13,6 @@ use App\Social;
  */
 class Game
 {
-    private $defaultCoverUrls = [
-        "full" => "/img/default-full-game.jpg",
-        "popular" => "/img/default-popular-game.jpg",
-        "comingSoon" => "/img/default-coming-soon-game.jpg",
-        "mostAnticipated" => "/img/default-most-anticipated-game.jpg",
-        "recentlyReviewed" => "/img/default-recently-reviewed-game.jpg",
-    ];
-
-    private $coverSizes = [
-        "full" => "cover_big",
-        "popular" => "cover_big",
-        "comingSoon" => "cover_small",
-        "recentlyReviewed" => "cover_big",
-        "mostAnticipated" => "cover_small",
-    ];
-
-
     public $name;
     public $slug;
 
@@ -47,7 +30,7 @@ class Game
         $game->summary = $game->passedSummaryOrDefault($params);
         $game->platforms = $game->formatPlaforms($params);
         $game->genres = $game->formatGenresOrDefault($params);
-        $game->screenshots = $game->parseScreenshots($params);
+        $game->screenshots = $game->enrichScreenshots($params);
         $game->releaseDate = $game->formatDateOrDefault($params);
         $game->rating = $game->formatRatingOrDefault(
             $params,
@@ -57,7 +40,7 @@ class Game
             $params,
             "aggregated_rating"
         );
-        $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
+        $game->cover = Image::cover($params, "full");
         $game->companies = $game->formatCompanies($params);
         $game->similarGames = $game->enrichSimilarGames($params);
 
@@ -67,6 +50,7 @@ class Game
         return $game;
     }
 
+
     public static function popular(array $params): Game
     {
         $game = new Game($params);
@@ -74,7 +58,7 @@ class Game
         $game->platforms = $game->formatPlaforms($params);
         $game->rating = $game->formatRatingOrDefault($params, "rating");
         $game->releaseDate = $game->formatDateOrDefault($params);
-        $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
+        $game->cover = Image::cover($params, "popular");
 
         return $game;
     }
@@ -86,7 +70,7 @@ class Game
         $game->platforms = $game->formatPlaforms($params);
         $game->rating = $game->formatRatingOrDefault($params, "rating");
         $game->summary = $game->passedSummaryOrDefault($params);
-        $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
+        $game->cover = Image::cover($params, "recentlyReviewed");
 
         return $game;
     }
@@ -96,7 +80,7 @@ class Game
         $game = new Game($params);
 
         $game->releaseDate = $game->formatDateOrDefault($params);
-        $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
+        $game->cover = Image::cover($params, "mostAnticipated");
 
         return $game;
     }
@@ -106,55 +90,24 @@ class Game
         $game = new Game($params);
 
         $game->releaseDate = $game->formatDateOrDefault($params);
-        $game->coverUrl = $game->passedCoverUrlOrDefault($params, __FUNCTION__);
+        $game->cover = Image::cover($params, "comingSoon");
 
         return $game;
     }
 
-    private function passedCoverUrlOrDefault(array $params, string $type): String
-    {
-        if (! isset($params["cover"]["url"])) {
-            return $this->defaultCoverUrls[$type];
-        }
-
-        return $this->changeRequestedSizeOfImage(
-            $params["cover"]["url"],
-            $this->coverSizes[$type],
-            "thumb"
-        );
-    }
-
     private function formatGenresOrDefault($params): string
     {
-        return join(
-            ', ',
-            collect($params["genres"])
-    ->pluck("name")
-    ->filter()
-    ->toArray()
-        );
+        return collect($params["genres"])->pluck("name")->filter()->join(", ");
     }
 
     private function formatPlaforms(array $params): string
     {
-        return join(
-            ', ',
-            collect($params["platforms"])
-    ->pluck("abbreviation")
-    ->filter()
-    ->toArray()
-        );
+        return collect($params["platforms"])->pluck("abbreviation")->filter()->join(", ");
     }
 
     private function formatCompanies(array $params): string
     {
-        return join(
-            ', ',
-            collect($params["involved_companies"])
-    ->pluck("company.name")
-    ->filter()
-    ->toArray()
-        );
+        return collect($params["involved_companies"])->pluck("company.name")->filter()->join(", ");
     }
 
     private function formatDateOrDefault($params)
@@ -181,6 +134,7 @@ class Game
         return round($params["aggregated_rating"])."%";
     }
 
+
     private function passedSummaryOrDefault(array $params)
     {
         if (! isset($params["summary"])) {
@@ -189,7 +143,8 @@ class Game
         return $params["summary"];
     }
 
-    private function parseScreenshots(array $params): array
+
+    private function enrichScreenshots($params, int $nbOfScreenshots=6): array
     {
         if (!isset($params["screenshots"])) {
             return [];
@@ -199,19 +154,14 @@ class Game
             ->pluck("url")
             ->filter()
             ->map(function ($url) {
-                return
-                    [
-                        "huge" => $this->changeRequestedSizeOfImage($url, "original", "thumb"),
-                        "big" => $this->changeRequestedSizeOfImage($url, "cover_big", "thumb"),
-                    ];
+                $image = new Image($url);
+                return [
+                    "huge" => $image->huge(),
+                    "big" => $image->big()
+                ];
             })
-            ->take(9)
+            ->take($nbOfScreenshots)
             ->toArray();
-    }
-
-    private function changeRequestedSizeOfImage($url, $needle, $haystack="thumb")
-    {
-        return Str::replaceFirst($haystack, $needle, $url);
     }
 
     private function enrichSimilarGames($params)
@@ -221,7 +171,7 @@ class Game
             $game = new Game($data);
             $game->platforms = $game->formatPlaforms($data);
             $game->slug = $data["slug"];
-            $game->coverUrl = $game->passedCoverUrlOrDefault($data, "popular");
+            $game->cover = Image::cover($data, "popular");
             $game->rating = $game->formatRatingOrDefault(
                 $data,
                 "rating"
