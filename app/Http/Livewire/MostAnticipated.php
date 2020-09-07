@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\BaseGame;
 use App\Game;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -40,7 +41,8 @@ class MostAnticipated extends Component
     {
         $result = [];
         foreach ($unformattedGames as $data) {
-            $result[] = Game::mostAnticipated($data);
+            $base = new BaseGame($data);
+            $result[] = $base ;
         }
         return collect($result);
     }

@@ -5,16 +5,16 @@
   @forelse($mostAnticipated as $game)
     <div class="mt-8 most-anticipated-container space-y-10">
       <div class="flex game">
-        <a href="/show/{{ $game->slug }}">
-          <img src="{{ $game->coverUrl }}"
-          alt="game cover"
-          class="w-16 hover:opacity-75 transition ease-in-out duration-150"
+        <a href="/show/{{ $game->getSlug()}}">
+          <img src="{{ $game->cover->url }}"
+            alt="game cover"
+            class="w-16 hover:opacity-75 transition ease-in-out duration-150"
           >
           </a>
         <div class="ml-4">
           <h3 class="game-title">
-            <a href="/show/{{ $game->slug }}"
-               >{{ $game->name }}
+            <a href="/show/{{ $game->getSlug() }}"
+               >{{ $game->getName() }}
             </a>
           </h3>
           <div class="mt-1 text-sm text-gray-400">

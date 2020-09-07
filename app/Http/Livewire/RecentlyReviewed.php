@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Game;
+use App\BaseGame;
+use App\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -41,7 +42,7 @@ class RecentlyReviewed extends Component
     {
         $result = [];
         foreach ($unformattedGames as $data) {
-            $result[] = Game::recentlyReviewed($data);
+            $result[] = new PopularGame(new BaseGame($data));
         }
         return collect($result);
     }

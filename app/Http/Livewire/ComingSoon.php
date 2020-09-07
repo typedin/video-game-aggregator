@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\BaseGame;
 use App\Game;
+use App\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -39,7 +41,7 @@ class ComingSoon extends Component
     {
         $result = [];
         foreach ($unformattedGames as $data) {
-            $result[] = Game::comingSoon($data);
+            $result[] = new PopularGame(new BaseGame($data));
         }
         return collect($result);
     }

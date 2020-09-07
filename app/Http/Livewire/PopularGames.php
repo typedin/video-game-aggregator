@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\BaseGame;
 use App\Game;
+use App\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -41,7 +43,7 @@ class PopularGames extends Component
     {
         $result = [];
         foreach ($unformattedGames as $data) {
-            $result[] = Game::popular($data);
+            $result[] = new PopularGame(new BaseGame($data));
         }
         return collect($result);
     }

@@ -6,8 +6,8 @@
     @forelse($popularGames as $game)
       <div class="mt-8 game">
         <div class="relative inline-block">
-          <a href="/show/{{ $game->slug }}">
-            <img src="{{ $game->coverUrl }}" alt="Valorant" class="hover:opacity-75 transition ease-in-out duration-150"/>
+          <a href="/show/{{ $game->getSlug() }}">
+            <img src="{{ $game->cover->url }}" alt="Valorant" class="hover:opacity-75 transition ease-in-out duration-150"/>
           </a>
             <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right: -20px; bottom: -20px;">
               <div class="flex items-center justify-center h-full text-xs font-semibold">
@@ -18,8 +18,8 @@
         <h3 class="mt-8 game-title">
           <a
             class="block"
-            href="/show/{{ $game->slug }}"
-            >{{ $game->name }}
+            href="/show/{{ $game->getSlug() }}"
+            >{{ $game->getName() }}
           </a>
         </h3>
         <div class="mt-1 text-gray-400">

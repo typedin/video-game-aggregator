@@ -4,26 +4,26 @@
     <div class="container px-4 mx-auto">
         <div class="flex flex-col pb-12 border-b border-gray-800 game-details lg:flex-row">
             <div class="flex-none">
-                <img src="{{ $game->cover->url }}" alt="cover">
+                <img src="{{ $game->getCover()->url }}" alt="cover">
             </div>
             <div class="lg:ml-12 xl:mr-64">
                 <h2 class="mt-1 text-4xl font-semibold leading-tight">
-                    {{ $game->getName() }}
+                    {{ $game->name }}
                 </h2>
 
                 <div class="text-gray-400">
-                    <span>{{ $game->genres }}</span>
+                    <span>{{ $game->getFormattedGenres() }}</span>
                     &middot;
-                    <span>{{ $game->companies }}</span>
+                    <span>{{ $game->getFormattedCompanies() }}</span>
                     &middot;
-                    <span>{{ $game->getPlatforms() }}</span>
+                    <span>{{ $game->getFormattedPlatforms() }}</span>
                 </div>
 
                 <div class="flex flex-wrap items-center mt-8">
                     <div class="flex items-center">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
                             <div class="flex items-center justify-center h-full text-xs font-semibold">
-                                {{ $game->memberRating }}
+                                {{ $game->getFormattedRating('rating')}}
                             </div>
                         </div>
                         <div class="flex flex-col ml-4 text-xs">
@@ -38,7 +38,7 @@
                     <div class="flex items-center ml-12">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
                             <div class="flex items-center justify-center h-full text-xs font-semibold">
-                                {{ $game->rating }}
+                                {{ $game->getFormattedRating("aggregated_rating")}}
                             </div>
                         </div>
                         <div class="flex flex-col ml-4 text-xs">
@@ -62,7 +62,7 @@
                 </div>
 
                 <p class="mt-12">
-                    {{ $game->summary }}
+                    {{ $game->getFormattedSummary() }}
                 </p>
 
                 @if( $game->trailers->count() )
