@@ -1,1 +1,1 @@
-["App\\Exceptions\\ParamsForSocialException"]
+["App\\Exceptions\\ParamsForSocialException","App\\Exception\\GameException"]
