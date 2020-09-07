@@ -1,35 +1,23 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Game;
 
-use App\BaseGame;
+use App\Game\AbstractGame;
 use PHPUnit\Framework\TestCase;
 
-class BaseGameTest extends TestCase
+class AbstractGameTest extends TestCase
 {
     /**
      * @test
      */
     public function it_cannot_be_instanciate_without_a_name_key()
     {
-        $this->expectExceptionMessage("No key for name was found");
+        $this->expectExceptionMessage("Trying to instanciate a game without a name");
 
-        new BaseGame([
-            "slug" => "a-slug"
-        ]);
-    }
+        $paramsWithNoName = [ "slug" => "a-slug" ];
 
-    /**
-     * @test
-     */
-    public function it_cannot_be_instanciate_without_a_name_value()
-    {
-        $this->expectExceptionMessage("No valid name was found");
-
-        new BaseGame([
-            "name" => "",
-            "slug" => "a-slug"
-        ]);
+        new class($paramsWithNoName) extends AbstractGame {
+        };
     }
 
     /**
@@ -37,23 +25,11 @@ class BaseGameTest extends TestCase
      */
     public function it_cannot_be_instanciate_without_a_slug_key()
     {
-        $this->expectExceptionMessage("No key for slug was found");
+        $this->expectExceptionMessage("Trying to instanciate a game without a slug");
 
-        new BaseGame([
-            "name" => "a name"
-        ]);
-    }
+        $paramsWithSlug = [ "name" => "a name" ];
 
-    /**
-     * @test
-     */
-    public function it_cannot_be_instanciate_without_a_slug_value()
-    {
-        $this->expectExceptionMessage("No valid slug was found");
-
-        new BaseGame([
-            "name" => "a name",
-            "slug" => ""
-        ]);
+        new class($paramsWithSlug) extends AbstractGame {
+        };
     }
 }

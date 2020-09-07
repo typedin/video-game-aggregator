@@ -2,7 +2,7 @@
 
 namespace App\Game;
 
-use App\Exception\GameException;
+use App\Game\Exceptions\GameException;
 
 class AbstractGame
 {
