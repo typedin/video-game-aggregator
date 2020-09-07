@@ -7,7 +7,7 @@ use App\Game\Traits\Rateable;
 use App\Game\Traits\Coverable;
 use App\Game\Traits\ReleaseDatable;
 
-class PopularGame extends AbstractGame
+final class PopularGame extends AbstractGame
 {
     use Coverable, ReleaseDatable, Rateable, Platformable;
 }

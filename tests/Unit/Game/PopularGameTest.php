@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Game;
 
 use App\Game\PopularGame;
 use PHPUnit\Framework\TestCase;

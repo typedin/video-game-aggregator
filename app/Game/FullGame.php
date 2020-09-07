@@ -10,12 +10,13 @@ use App\Game\Traits\Platformable;
 use App\Game\Traits\Rateable;
 use App\Game\Traits\ReleaseDatable;
 use App\Game\Traits\Summarizable;
+use App\Image;
 
 /**
  * Class Game
  * @author typedin
  */
-class FullGame extends AbstractGame
+final class FullGame extends AbstractGame
 {
     use Companiable,
         Coverable,
@@ -24,4 +25,14 @@ class FullGame extends AbstractGame
         Rateable,
         ReleaseDatable,
         Summarizable;
+
+    public function getScreenshots()
+    {
+        return collect($this->getParams("screenshots"))
+            ->pluck("url")
+            ->filter()
+            ->map(function ($url) {
+                return new Image($url);
+            });
+    }
 }

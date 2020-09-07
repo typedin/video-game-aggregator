@@ -42,6 +42,6 @@ class RecentlyReviewedGameTest extends TestCase
 
         $game = new RecentlyReviewedGame($decodedJsonWithoutSummary);
 
-        $this->assertEquals("No summary yet", $game->getSummary());
+        $this->assertEquals("No summary yet", $game->getFormattedSummary());
     }
 }

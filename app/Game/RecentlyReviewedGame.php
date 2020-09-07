@@ -8,7 +8,7 @@ use App\Game\Traits\Rateable;
 use App\Game\Traits\ReleaseDatable;
 use App\Game\Traits\Summarizable;
 
-class RecentlyReviewedGame extends AbstractGame
+final class RecentlyReviewedGame extends AbstractGame
 {
     use ReleaseDatable, Coverable, Rateable, Platformable, Summarizable;
 }
