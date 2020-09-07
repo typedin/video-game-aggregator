@@ -28,8 +28,8 @@ class RecentlyReviewedGameTest extends TestCase
         $this->assertEquals("desperados-iii", $game->slug);
         $this->assertEquals("Jun 16, 2020", $game->getReleaseDate());
         $this->assertInstanceOf(\App\Image::class, $game->getCover());
-        $this->assertEquals("N/A", $game->getFormatedRating("release_date"));
-        $this->assertEquals("PC, PS4, XONE", $game->getPlatforms());
+        $this->assertEquals("N/A", $game->getFormattedRating("release_date"));
+        $this->assertEquals("PC, PS4, XONE", $game->getFormattedPlatforms());
     }
 
     /**

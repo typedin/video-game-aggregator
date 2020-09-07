@@ -28,8 +28,8 @@ class PopularGameTest extends TestCase
         $this->assertEquals("cyberpunk-2077", $game->slug);
         $this->assertEquals("Nov 19, 2020", $game->getReleaseDate());
         $this->assertInstanceOf(\App\Image::class, $game->getCover());
-        $this->assertEquals("N/A", $game->getFormatedRating("release_date"));
-        $this->assertEquals("PC, PS4, XONE, Stadia", $game->getPlatforms());
+        $this->assertEquals("N/A", $game->getFormattedRating("release_date"));
+        $this->assertEquals("PC, PS4, XONE, Stadia", $game->getFormattedPlatforms());
     }
 
     /**
@@ -56,7 +56,7 @@ class PopularGameTest extends TestCase
 
         $game = new PopularGame($decodedJsonWithoutRating);
 
-        $this->assertEquals("N/A", $game->getFormatedRating("release_date"));
+        $this->assertEquals("N/A", $game->getFormattedRating("release_date"));
     }
 
     /**
@@ -72,4 +72,3 @@ class PopularGameTest extends TestCase
         $this->assertEquals("No date yet", $game->getReleaseDate());
     }
 }
-

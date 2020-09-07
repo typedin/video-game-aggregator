@@ -6,7 +6,7 @@ use App\Rating;
 
 trait Rateable
 {
-    public function getFormatedRating($key): String
+    public function getFormattedRating($key): String
     {
         if (! isset($this->getParams()[$key])) {
             return Rating::fromEmpty();
