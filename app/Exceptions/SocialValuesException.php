@@ -3,19 +3,20 @@
 namespace App\Exceptions;
 
 use InvalidArgumentException;
+use App\Exceptions\SocialValuesException;
 
 /**
  * Class ParamsForSocialException
  * @author yourname
  */
-class ParamsForSocialException extends InvalidArgumentException
+class SocialValuesException extends InvalidArgumentException
 {
     /**
      * Called when no top level websites key was found
      *
      * @return ParamsForSocialException
      */
-    public static function noWebsitesKey(): ParamsForSocialException
+    public static function noWebsitesKey(): SocialValuesException
     {
         return new self("No websites keys found.");
     }
@@ -27,7 +28,7 @@ class ParamsForSocialException extends InvalidArgumentException
      *
      * @return ParamsForSocialException
      */
-    public static function noUrlKeyFound($gameField): ParamsForSocialException
+    public static function noUrlKeyFound($gameField): SocialValuesException
     {
         return new self("No url found for game ".self::idOrFallBackMessage($gameField).".");
     }
@@ -39,7 +40,7 @@ class ParamsForSocialException extends InvalidArgumentException
      *
      * @return ParamsForSocialException
      */
-    public static function invalidUrl($gameField): ParamsForSocialException
+    public static function invalidUrl($gameField): SocialValuesException
     {
         return new self("No valid url found for game ".self::idOrFallBackMessage($gameField).".");
     }
@@ -51,7 +52,7 @@ class ParamsForSocialException extends InvalidArgumentException
      *
      * @return ParamsForSocialException
      */
-    public static function noCategoryKeyFound($gameField): ParamsForSocialException
+    public static function noCategoryKeyFound($gameField): SocialValuesException
     {
         return new self("No category found for game ".self::idOrFallBackMessage($gameField).".");
     }
@@ -63,7 +64,7 @@ class ParamsForSocialException extends InvalidArgumentException
      *
      * @return ParamsForSocialException
      */
-    public static function invalidCategory($gameField): ParamsForSocialException
+    public static function invalidCategory($gameField): SocialValuesException
     {
         return new self("No valid category found for game ".self::idOrFallBackMessage($gameField).".");
     }

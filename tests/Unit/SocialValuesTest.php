@@ -2,12 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\ParamsForSocial;
+use App\SocialValues;
 use PHPUnit\Framework\TestCase;
 
-class ParamsForSocialTest extends TestCase
+class SocialValuesTest extends TestCase
 {
-    const VALID = ["websites" => [
+    const VALID = [
+        "websites" => [
         [
             "id"=> 136789,
             "category"=> 4,
@@ -93,53 +94,33 @@ class ParamsForSocialTest extends TestCase
     /**
      * @test
      */
-    public function it_must_be_instanciate_with_an_array_with_a_websites_key()
+    public function it_must_have_a_url()
     {
+        $invalid = [
+            "game"=> 126459,
+            "category"=> 1,
+        ];
+
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("No websites keys found.");
+        $this->expectExceptionMessage("No url found for game 126459.");
 
-        $sut = new ParamsForSocial([]);
+        $sut = new SocialValues($invalid);
     }
-
     /**
      * @test
      */
     public function it_must_have_a_url_key()
     {
         $invalid = [
-            "websites" => [
-                [
-                    "game"=> 126459,
-                    "category"=> 1,
-                ]
-            ]
-        ];
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("No url found for game 126459.");
-
-        $sut = new ParamsForSocial($invalid);
-    }
-
-    /**
-     * @test
-     */
-    public function url_must_be_an_url()
-    {
-        $invalid = [
-            "websites" => [
-                [
-                    "game"=> 126459,
-                    "category"=> 1,
-                    "url"=> "not a url",
-                ]
-            ]
+            "game"=> 126459,
+            "category"=> 1,
+            "url" => null
         ];
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("No valid url found for game 126459.");
 
-        $sut = new ParamsForSocial($invalid);
+        $sut = new SocialValues($invalid);
     }
 
     /**
@@ -148,18 +129,14 @@ class ParamsForSocialTest extends TestCase
     public function it_must_have_a_category_key()
     {
         $invalid = [
-            "websites" => [
-                [
-                    "game"=> 126459,
-                    "url"=> "https://www.facebook.com/PlayVALORANT",
-                ]
-            ]
+            "game"=> 126459,
+            "url"=> "https://www.facebook.com/PlayVALORANT",
         ];
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("No category found for game 126459.");
 
-        $sut = new ParamsForSocial($invalid);
+        $sut = new SocialValues($invalid);
     }
 
 
@@ -169,37 +146,29 @@ class ParamsForSocialTest extends TestCase
     public function category_must_be_an_int()
     {
         $invalid = [
-            "websites" => [
-                [
                     "game"=> 126459,
                     "category"=> "not an int",
                     "url"=> "https://www.facebook.com/PlayVALORANT",
-                ]
-            ]
         ];
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("No valid category found for game 126459.");
 
-        $sut = new ParamsForSocial($invalid);
+        $sut = new SocialValues($invalid);
     }
 
     /**
      * @test
      */
-    public function it_falls_back_when_no_game_key_is_usable()
+    public function it_falls_back_to_a_default_message_when_no_game_key_is_usable()
     {
         $invalid = [
-            "websites" => [
-                [
-                    "url"=> "https://www.facebook.com/PlayVALORANT",
-                ]
-            ]
+                "url"=> "https://www.facebook.com/PlayVALORANT",
         ];
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("No category found for game with no ID.");
 
-        $sut = new ParamsForSocial($invalid);
+        $sut = new SocialValues($invalid);
     }
 }

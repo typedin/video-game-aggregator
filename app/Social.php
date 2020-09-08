@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\SocialException;
 use Illuminate\Support\Collection;
 
 /**
@@ -12,42 +13,52 @@ class Social
 {
     const lookupTable = [
             [
-                "category" => 1,
+                "categoryId" => 1,
                 "name" => "website"
             ],
             [
-                "category" => 4,
+                "categoryId" => 4,
                 "name" => "facebook"
             ],
             [
-                "category" => 5,
+                "categoryId" => 5,
                 "name" => "twitter"
             ],
             [
-                "category" => 8,
+                "categoryId" => 8,
                 "name" => "instagram"
             ],
         ];
 
+    public $url;
+    public $name;
 
-    public function __construct(array $params)
+    /**
+     * @param SocialValues $values [TODO:description]
+     */
+    public function __construct(SocialValues $values)
     {
-        $this->name = $params["name"];
-        $this->url = $params["url"];
+        $this->url = $values->url;
+        $this->name = $this->findCategoryFromId($values->categoryId);
     }
 
-    public static function createFromApiResponse(array $params): Collection
+    /**
+     *
+     * @param int $categoryId the passed by the value object
+     *
+     * @return string name found in the lookup table
+     */
+    private function findCategoryFromId(int $categoryId): String
     {
-        return collect($params["websites"])
-            ->whereIn(
-                "category",
-                collect(self::lookupTable)->pluck("category")
-            )
-            ->map(function ($website) {
-                return new Social([
-                    "url" => $website["url"],
-                    "name" => collect(self::lookupTable)->where("category", $website["category"])->pluck("name")->first(),
-                ]);
-            })->values();
+        $category = collect(self::lookupTable)
+             ->where("categoryId", $categoryId)
+             ->pluck("name")
+             ->first();
+
+        if (is_null($category)) {
+            throw SocialException::noCategory($categoryId);
+        }
+
+        return $category;
     }
 }

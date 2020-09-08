@@ -58,20 +58,28 @@ class FullGameTest extends TestCase
     /**
      * @test
      */
+    public function it_can_handle_response_with_no_screenshots()
+    {
+        $decodedJsonWithNoScreenshots = $this->decodedJson();
+        unset($decodedJsonWithNoScreenshots["screenshots"]);
+
+        $game = new FullGame($decodedJsonWithNoScreenshots);
+
+        $this->assertEquals(0, count($game->getScreenshots()));
+    }
+
+    /**
+     * @test
+     */
     public function it_can_have_trailler()
     {
-        $decodedJson = json_decode(
-            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
-            true
-        );
-
-        $game = new FullGame(new CommonGame(new BaseGame($decodedJson)));
+        $game = new FullGame($this->decodedJson());
 
 
-        $this->assertEquals(3, count($game->trailers));
+        $this->assertEquals(3, count($game->getTrailers()));
         $this->assertEquals(
             "https://youtube.com/watch/4iGU6PctOBg",
-            $game->trailers->first()
+            $game->getTrailers()->first()->url
         );
     }
 
@@ -80,15 +88,12 @@ class FullGameTest extends TestCase
      */
     public function it_can_handle_response_with_no_video()
     {
-        $decodedJsonWithNoVideo = json_decode(
-            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
-            true
-        );
+        $decodedJsonWithNoVideo = $this->decodedJson();
         unset($decodedJsonWithNoVideo["videos"]);
 
-        $game = new FullGame(new CommonGame(new BaseGame($decodedJsonWithNoVideo)));
+        $game = new FullGame($decodedJsonWithNoVideo);
 
-        $this->assertEquals(0, count($game->trailers));
+        $this->assertEquals(0, count($game->getTrailers()));
     }
 
     /**
@@ -96,18 +101,24 @@ class FullGameTest extends TestCase
      */
     public function it_can_have_many_similar_games()
     {
-        $decodedJson = json_decode(
-            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
-            true
-        );
+        $game = new FullGame($this->decodedJson());
 
-        $basicGame = new BaseGame($decodedJson);
-        $commonGame = new CommonGame($basicGame, $decodedJson);
-        $game = new FullGame($commonGame, $decodedJson);
+        $this->assertEquals(6, count($game->getSimilarGames()));
+        $this->assertEquals("Tears of Avia", $game->getSimilarGames()[0]->name);
+        $this->assertEquals("tears-of-avia", $game->getSimilarGames()[0]->slug);
+    }
 
-        $this->assertEquals(6, count($game->similarGames));
-        $this->assertEquals("Tears of Avia", $game->similarGames[0]->getName());
-        $this->assertEquals("tears-of-avia", $game->similarGames[0]->getSlug());
+    /**
+     * @test
+     */
+    public function it_may_have_no_similar_games()
+    {
+        $decodedJsonWithNoSimilarGames = $this->decodedJson();
+        unset($decodedJsonWithNoSimilarGames["similar_games"]);
+
+        $game = new FullGame($decodedJsonWithNoSimilarGames);
+
+        $this->assertEquals(0, count($game->getSimilarGames()));
     }
 
     /**
@@ -115,16 +126,30 @@ class FullGameTest extends TestCase
      */
     public function it_can_have_socials()
     {
-        $decodedJson = json_decode(
-            file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
-            true
-        );
+        $game = new FullGame($this->decodedJson());
 
-        $basicGame = new BaseGame($decodedJson);
-        $commonGame = new CommonGame($basicGame, $decodedJson);
-        $game = new FullGame($commonGame, $decodedJson);
+        $this->assertEquals(4, count($game->getSocials()));
+        $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->getSocials()->first()->url);
+        $this->assertEquals("facebook", $game->getSocials()->first()->name);
+    }
 
-        $this->assertEquals(4, count($game->socials));
-        $this->assertEquals("https://www.facebook.com/PlayVALORANT", $game->socials[0]->url);
+    /**
+     * @test
+     */
+    public function it_handles_socials_exception_when_wrong_data_is_passed()
+    {
+        $dataWithOnlyFourValidWebsites = $this->decodedJson();
+        array_push($dataWithOnlyFourValidWebsites["websites"], [
+            "id"=> 136789,
+            "category"=> 4242424242,
+            "game"=> 126459,
+            "trusted"=> true,
+            "url"=> "https://www.facebook.com/something-real",
+            "checksum"=> "00000000-0000-0000-0000-000000000000"
+        ]);
+
+        $game = new FullGame($dataWithOnlyFourValidWebsites);
+
+        $this->assertEquals(4, count($game->getSocials()));
     }
 }

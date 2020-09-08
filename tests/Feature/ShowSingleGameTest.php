@@ -21,6 +21,7 @@ class ShowSingleGameTest extends TestCase
             file_get_contents(__DIR__."/../__fixtures__/one-full-game.json"),
             true
         );
+
         Http::fake([
             "https://api-v3.igdb.com/games/" =>
                 Http::response([$decodedJson], 200, ["Headers"])

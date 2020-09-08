@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="flex items-center mt-4 space-x-4 sm:mt-0 sm:ml-12">
-                        @foreach($game->socials as $social)
+                        @foreach($game->getSocials() as $social)
                             <div class="flex items-center justify-center w-8 h-8 bg-gray-800 rounded-full">
                                 <a href="{{ $social->url }}" class="hover:text-gray-400">
                                     @include("svg.".$social->name)
@@ -65,10 +65,10 @@
                     {{ $game->getFormattedSummary() }}
                 </p>
 
-                @if( $game->trailers->count() )
+                @if( $game->getTrailers()->count() )
                     <div class="mt-12">
                         <a
-                            href={{ $game->trailers->first()  }}
+                            href={{ $game->getTrailers()->first()->url  }}
                             class="flex inline-flex px-4 py-4 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 transition ease-in-out duration-150">
                             <svg class="w-6 fill-current" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
@@ -88,11 +88,11 @@
             </h2>
 
             <div class="mt-8 grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                @foreach ($game->screenshots as $screenshot)
+                @foreach ($game->getScreenshots() as $screenshot)
                     <div class="flex justify-center">
-                        <a href="{{ $screenshot['huge'] }}">
+                        <a href="{{ $screenshot->huge() }}">
                             <img
-                                src="{{ $screenshot['big'] }}"
+                                src="{{ $screenshot->big() }}"
                                 alt="screenshot"
                                 class="hover:opacity-75 transition ease-in-out duration-150"
                             >
@@ -108,27 +108,27 @@
                 Similar Games
             </h2>
             <div class="text-sm similar-games grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
-                @foreach ($game->similarGames as $similarGame)
+                @foreach ($game->getSimilargames() as $similarGame)
                     <div class="mt-8 game">
                         <div class="relative inline-block">
-                            <a href="{{ $similarGame->getSlug()}}">
+                            <a href="/show/{{ $similarGame->slug }}">
                                 <img
-                                    src="{{ $similarGame->cover->url }}"
+                                    src="{{ $similarGame->getCover()->url }}"
                                     alt="game cover"
                                     class="hover:opacity-75 transition ease-in-out duration-150"
                                 >
                             </a>
                             <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right: -20px; bottom: -20px">
                                 <div class="flex items-center justify-center h-full text-xs font-semibold">
-                                    {{ $similarGame->rating }}
+                                    {{ $similarGame->getFormattedRating("rating") }}
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ $similarGame->getSlug() }}" class="block mt-8 text-base font-semibold leading-tight hover:text-gray-400">
-                            {{ $similarGame->getName()}}
+                        <a href="/show/{{ $similarGame->slug }}" class="block mt-8 text-base font-semibold leading-tight hover:text-gray-400">
+                            {{ $similarGame->name }}
                         </a>
                         <div class="mt-1 text-gray-400">
-                            {{ $similarGame->platforms }}
+                            {{ $similarGame->getFormattedPlatforms() }}
                         </div>
                     </div>
                 @endforeach
