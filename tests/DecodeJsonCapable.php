@@ -11,7 +11,7 @@ trait DecodeJsonCapable
     private function decodeJson()
     {
         $decodedJson = json_decode(
-            file_get_contents(__DIR__.self::FIXTURE),
+            file_get_contents(__DIR__."/__fixtures__/".self::FIXTURE),
             true
         );
         return $decodedJson;

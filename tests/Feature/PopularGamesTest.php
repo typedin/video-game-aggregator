@@ -14,7 +14,7 @@ class PopularGamesTest extends TestCase
 {
     use DecodeJsonCapable;
 
-    const FIXTURE = "/__fixtures__/many-popular-games.json";
+    const FIXTURE = "many-popular-games.json";
 
     /**
      * @test
