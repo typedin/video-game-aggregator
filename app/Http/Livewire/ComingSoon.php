@@ -9,19 +9,13 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class ComingSoon extends Component
+class ComingSoon extends GameComponent
 {
-    use Formatable;
-
-    private $unformattedGames;
-
-    public $comingSoon = [];
-
-    public function load()
+    protected function getData()
     {
         $today = Carbon::now()->timestamp;
 
-        $this->unformattedGames = Cache::remember("popular-games", 7, function () use ($today) {
+        return Cache::remember("coming-soon", 7, function () use ($today) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -35,11 +29,9 @@ class ComingSoon extends Component
                 ])->get("https://api-v3.igdb.com/games/")
                   ->json();
         });
-
-        $this->comingSoon = $this->format()->toArray();
     }
 
-    private function instanciateGame($unformattedGame)
+    protected function instanciateGame($unformattedGame)
     {
         return new ComingSoonGame($unformattedGame);
     }

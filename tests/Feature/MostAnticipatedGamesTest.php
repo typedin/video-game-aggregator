@@ -24,9 +24,6 @@ class MostAnticipatedGamesTest extends TestCase
      */
     public function it_shows_most_anticipated_games()
     {
-        Livewire::test(MostAnticipated::class)
-            ->assertSet("mostAnticipated", []);
-
         Http::fake([
             "https://api-v3.igdb.com/games/" => Http::response(
                 $this->decodeJson(),

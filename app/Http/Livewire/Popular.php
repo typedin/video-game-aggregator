@@ -9,20 +9,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class Popular extends Component
+class Popular extends GameComponent
 {
-    use Formatable;
-
-    private $unformattedGames;
-
-    public $popularGames = [];
-
-    public function load()
+    protected function getData()
     {
         $before = Carbon::now()->subMonths(2)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
-        $this->unformattedGames = Cache::remember("popular-games", 60, function () use ($before, $after) {
+        return Cache::remember("popular-games", 60, function () use ($before, $after) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -37,11 +31,10 @@ class Popular extends Component
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
         });
-
-        $this->popularGames = $this->format()->toArray();
     }
 
-    private function instanciateGame($unformattedGame)
+
+    protected function instanciateGame($unformattedGame)
     {
         return new PopularGame($unformattedGame);
     }

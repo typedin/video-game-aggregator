@@ -2,7 +2,7 @@
   <h2 class="mt-12 section-title">
     Coming Soon
   </h2>
-  @forelse($comingSoon as $game)
+  @forelse($games as $game)
     <div class="mt-8 coming-soon-container space-y-10">
       <div class="flex game">
         <a href="/show/{{ $game->slug }}">

@@ -2,7 +2,7 @@
   <h2 class="section-title">
     Most Anticipated
   </h2>
-  @forelse($mostAnticipated as $game)
+  @forelse($games as $game)
     <div class="mt-8 most-anticipated-container space-y-10">
       <div class="flex game">
         <a href="/show/{{ $game->slug }}">

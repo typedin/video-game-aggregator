@@ -9,20 +9,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class RecentlyReviewed extends Component
+class RecentlyReviewed extends GameComponent
 {
-    use Formatable;
-
-    private $unformattedGames;
-
-    public $recentlyReviewed = [];
-
-    public function load()
+    protected function getData()
     {
         $today = Carbon::now()->timestamp;
         $before = Carbon::now()->subMonths(2)->timestamp;
 
-        $this->unformattedGames = Cache::remember("recently-reviewed", 0, function () use ($before, $today) {
+        return Cache::remember("recently-reviewed", 0, function () use ($before, $today) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -37,11 +31,9 @@ class RecentlyReviewed extends Component
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
         });
-
-        $this->recentlyReviewed = $this->format()->toArray();
     }
     
-    private function instanciateGame($unformattedGame)
+    protected function instanciateGame($unformattedGame)
     {
         return new RecentlyReviewedGame($unformattedGame);
     }

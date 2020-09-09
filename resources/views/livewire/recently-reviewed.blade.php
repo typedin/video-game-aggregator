@@ -3,7 +3,7 @@
     Recently Reviewed
   </h2>
   <div class="mt-8 recently-reviewed-container space-y-12">
-    @forelse($recentlyReviewed as $game)
+    @forelse($games as $game)
       <div class="flex px-6 py-6 bg-gray-800 rounded-lg shadow-md game">
         <div class="relative flex-none">
           <a href="/show/{{ $game->slug }}">

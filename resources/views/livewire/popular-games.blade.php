@@ -3,7 +3,7 @@
     Popular Games
   </h2>
   <div class="pb-16 text-sm border-b border-gray-800 popular-games grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
-    @forelse($popularGames as $game)
+    @forelse($games as $game)
       <div class="mt-8 game">
         <div class="relative inline-block">
           <a href="/show/{{ $game->slug }}">
