@@ -41,6 +41,11 @@ class MostAnticipatedGamesTest extends TestCase
         ;
     }
 
+    private function makeBadData($data)
+    {
+        return $data;
+    }
+
     /**
      * @test
      */
