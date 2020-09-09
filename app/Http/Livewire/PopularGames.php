@@ -7,6 +7,7 @@ use App\Game\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Illuminate\Support\Collection;
@@ -44,6 +45,7 @@ class PopularGames extends Component
             try {
                 return new \App\Game\PopularGame($dataForAGame);
             } catch (GameException $e) {
+                Log::notice($e);
             }
         });
     }
