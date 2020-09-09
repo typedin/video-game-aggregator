@@ -46,9 +46,6 @@ class MostAnticipatedGamesTest extends TestCase
      */
     public function it_logs_error_when_wrong_data_has_been_retreived()
     {
-        Livewire::test(MostAnticipated::class)
-            ->assertSet("mostAnticipated", []);
-
         Http::fake([
             "https://api-v3.igdb.com/games/" => Http::response(
                 $this->decodeJson(),
