@@ -7,20 +7,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Livewire\Livewire;
+use Tests\DecodeJsonCapable;
 use Tests\TestCase;
 
 class PopularGamesTest extends TestCase
 {
-    const FIXTURE = "/../__fixtures__/many-popular-games.json";
+    use DecodeJsonCapable;
 
-    private function decodeJson()
-    {
-        $decodedJson = json_decode(
-            file_get_contents(__DIR__.self::FIXTURE),
-            true
-        );
-        return $decodedJson;
-    }
+    const FIXTURE = "/__fixtures__/many-popular-games.json";
 
     /**
      * @test
