@@ -3,14 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Game\Exceptions\GameException;
-use App\Game\PopularGame;
+use App\Game\PopularGame as PopularGameAlias;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Livewire\Component;
-use Illuminate\Support\Collection;
 
 class PopularGames extends Component
 {
@@ -21,7 +20,7 @@ class PopularGames extends Component
         $before = Carbon::now()->subMonths(2)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
-        $popularGamesUnformatted = Cache::remember("popular-games", 60, function () use ($before, $after) {
+        $unformattedGames = Cache::remember("popular-games", 60, function () use ($before, $after) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -36,18 +35,20 @@ class PopularGames extends Component
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
         });
-        $this->popularGames = $this->format($popularGamesUnformatted)->toArray();
+
+        $this->popularGames = $this->format(collect($unformattedGames))->toArray();
     }
 
-    private function format($unformattedGames): Collection
+    private function format(Collection $unformattedGames): Collection
     {
-        return collect($unformattedGames[0])->map(function ($dataForAGame) {
-            try {
-                return new \App\Game\PopularGame($dataForAGame);
-            } catch (GameException $e) {
-                Log::notice($e);
-            }
-        });
+        return $unformattedGames
+            ->map(function ($unformattedGame) {
+                try {
+                    return new PopularGameAlias($unformattedGame);
+                } catch (GameException $e) {
+                    Log::notice($e);
+                }
+            });
     }
 
     public function render()

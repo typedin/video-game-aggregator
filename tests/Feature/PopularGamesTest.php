@@ -11,21 +11,27 @@ use Tests\TestCase;
 
 class PopularGamesTest extends TestCase
 {
+    const FIXTURE = "/../__fixtures__/many-popular-games.json";
+
+    private function decodeJson()
+    {
+        $decodedJson = json_decode(
+            file_get_contents(__DIR__.self::FIXTURE),
+            true
+        );
+        return $decodedJson;
+    }
+
     /**
      * @test
      */
     public function it_shows_popular_games()
     {
-        $decodedJson = json_decode(
-            file_get_contents(__DIR__."/../__fixtures__/many-popular-games.json"),
-            true
-        );
-
         Livewire::test(PopularGames::class)
             ->assertSet("popularGames", []);
 
         Http::fake([
-            "https://api-v3.igdb.com/games/" => Http::response([$decodedJson], 200, ["Headers"])
+            "https://api-v3.igdb.com/games/" => Http::response($this->decodeJson(), 200, ["Headers"])
         ]);
 
         Livewire::test(PopularGames::class)
