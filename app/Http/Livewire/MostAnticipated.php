@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\BaseGame;
-use App\Game;
+use App\Game\MostAnticipatedGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -34,18 +33,16 @@ class MostAnticipated extends Component
             ->json();
         });
 
-        $this->mostAnticipated = $this->format($unformattedGames)->toArray();
+        $this->mostAnticipated = $this->format(collect($unformattedGames))->toArray();
     }
 
-    private function format($unformattedGames): Collection
+    private function format(Collection $unformattedGames): Collection
     {
-        $result = [];
-        foreach ($unformattedGames as $data) {
-            $base = new BaseGame($data);
-            $result[] = $base ;
-        }
-        return collect($result);
+        return $unformattedGames->map(function ($unformattedGame) {
+            return new MostAnticipatedGame($unformattedGame);
+        });
     }
+
     public function render()
     {
         return view('livewire.most-anticipated');
