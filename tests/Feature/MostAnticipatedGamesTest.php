@@ -53,7 +53,7 @@ class MostAnticipatedGamesTest extends TestCase
     {
         Http::fake([
             "https://api-v3.igdb.com/games/" => Http::response(
-                $this->decodeJson(),
+                $this->makeBadData($this->decodeJson()),
                 200,
                 ["Headers"]
             )
