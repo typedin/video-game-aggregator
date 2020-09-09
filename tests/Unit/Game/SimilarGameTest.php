@@ -33,12 +33,9 @@ class SimilarGameTest extends TestCase
             "slug"=> "tears-of-avia"
         ];
     }
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+
+    /** @test */
+    public function it_has_everything_for_a_view()
     {
         $game = new SimilarGame($this->decodeJson());
 

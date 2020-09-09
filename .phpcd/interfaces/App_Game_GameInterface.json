@@ -1,1 +1,1 @@
-["App\\Game\\AbstractGame"]
+["App\\Game\\AbstractGame","App\\Game\\FullGame"]

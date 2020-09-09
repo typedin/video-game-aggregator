@@ -108,7 +108,7 @@
                 Similar Games
             </h2>
             <div class="text-sm similar-games grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">
-                @foreach ($game->getSimilargames() as $similarGame)
+                @foreach ($game->getSimilarGames() as $similarGame)
                     <div class="mt-8 game">
                         <div class="relative inline-block">
                             <a href="/show/{{ $similarGame->slug }}">

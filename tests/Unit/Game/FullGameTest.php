@@ -136,6 +136,19 @@ class FullGameTest extends TestCase
     /**
      * @test
      */
+    public function it_may_have_no_socials()
+    {
+        $decodedJsonWithNoSocials = $this->decodedJson();
+        unset($decodedJsonWithNoSocials["websites"]);
+
+        $game = new FullGame($decodedJsonWithNoSocials);
+
+        $this->assertEquals(0, count($game->getSocials()));
+    }
+
+    /**
+     * @test
+     */
     public function it_handles_socials_exception_when_wrong_data_is_passed()
     {
         $dataWithOnlyFourValidWebsites = $this->decodedJson();

@@ -73,7 +73,9 @@ final class FullGame extends AbstractGame
     public function getSocials($limit=4): Collection
     {
         $socials = new Collection();
-
+        if (! array_key_exists("websites", $this->getParams())) {
+            return $socials;
+        }
         foreach ($this->getParams("websites") as $website) {
             try {
                 $socials->push(new Social(new SocialValues($website)));

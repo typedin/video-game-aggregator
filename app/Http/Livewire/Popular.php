@@ -11,13 +11,14 @@ use Livewire\Component;
 
 class Popular extends GameComponent
 {
+    protected $cacheKey = "popular";
+
     protected function getData()
     {
         $before = Carbon::now()->subMonths(2)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
-        return Cache::remember("popular-games", 60, function () use ($before, $after) {
-            return Http::withHeaders(config("services.igdb"))
+        return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
                         fields name, slug, cover.url, first_release_date, popularity, platforms.abbreviation, rating; 
@@ -30,7 +31,6 @@ class Popular extends GameComponent
                     "
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
-        });
     }
 
 

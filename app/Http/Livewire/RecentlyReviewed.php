@@ -11,13 +11,14 @@ use Livewire\Component;
 
 class RecentlyReviewed extends GameComponent
 {
+    protected $cacheKey = "coming-soon";
+
     protected function getData()
     {
         $today = Carbon::now()->timestamp;
         $before = Carbon::now()->subMonths(2)->timestamp;
 
-        return Cache::remember("recently-reviewed", 0, function () use ($before, $today) {
-            return Http::withHeaders(config("services.igdb"))
+        return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
                         fields name, slug, summary, cover.url, first_release_date, popularity, platforms.abbreviation, rating, rating_count; 
@@ -30,7 +31,6 @@ class RecentlyReviewed extends GameComponent
                     "
                 ])->get("https://api-v3.igdb.com/games/")
                 ->json();
-        });
     }
     
     protected function instanciateGame($unformattedGame)

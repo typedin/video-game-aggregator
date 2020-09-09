@@ -21,6 +21,10 @@ trait Coverable
 
     public function getCover(): Image
     {
+        if (!array_key_exists("cover", $this->getParams())) {
+            return Image::cover(null, $this->extractAdjectiveFromClassName());
+        }
+
         if (! array_key_exists("url", $this->getParams("cover"))) {
             return Image::cover(null, $this->extractAdjectiveFromClassName());
         }

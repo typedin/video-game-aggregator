@@ -14,6 +14,7 @@ class Image
     const DEFAULT_COVER_URLS = [
         "full" => "/img/default-full-game.jpg",
         "popular" => "/img/default-popular-game.jpg",
+        "similar" => "/img/default-recently-reviewed-game.jpg",
         "coming-soon" => "/img/default-coming-soon-game.jpg",
         "most-anticipated" => "/img/default-most-anticipated-game.jpg",
         "recently-reviewed" => "/img/default-recently-reviewed-game.jpg",
@@ -22,6 +23,7 @@ class Image
     const COVER_SIZE = [
         "full" => "cover_big",
         "popular" => "cover_big",
+        "similar" => "cover_small",
         "coming-soon" => "cover_small",
         "recently-reviewed" => "cover_big",
         "most-anticipated" => "cover_small",
