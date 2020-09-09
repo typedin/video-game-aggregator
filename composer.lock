@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66bb40351d9d796b3fba7955b7a8958e",
+    "content-hash": "2deed4a81a99487095a92b0ede43734d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7255,6 +7255,61 @@
                 }
             ],
             "time": "2020-07-12T23:59:07+00:00"
+        },
+        {
+            "name": "timacdonald/log-fake",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timacdonald/log-fake.git",
+                "reference": "af7f740ab34167f8782d02c315cb8e1340f9ab26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timacdonald/log-fake/zipball/af7f740ab34167f8782d02c315cb8e1340f9ab26",
+                "reference": "af7f740ab34167f8782d02c315cb8e1340f9ab26",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.6.0 || ~5.7.0 || ~5.8.0 || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/container": "~5.6.0 || ~5.7.0 || ~5.8.0 || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/support": "~5.6.0 || ~5.7.0 || ~5.8.0 || ^6.0 || ^7.0 || ^8.0",
+                "php": "^7.1",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.0",
+                "infection/infection": "^0.17.0",
+                "phpstan/phpstan": "^0.12",
+                "vimeo/psalm": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TiMacDonald\\Log\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tim MacDonald",
+                    "email": "hello@timacdonald.me",
+                    "homepage": "https://timacdonald.me"
+                }
+            ],
+            "description": "A drop in fake logger for testing with the Laravel framework.",
+            "keywords": [
+                "fake",
+                "laravel",
+                "log",
+                "logger",
+                "testing"
+            ],
+            "time": "2020-09-08T23:05:20+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\Popular;
+use App\Http\Livewire\RecentlyReviewed;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -12,35 +12,26 @@ use Tests\DecodeJsonCapable;
 use Tests\TestCase;
 use TiMacDonald\Log\LogFake;
 
-class PopularGamesTest extends TestCase
+class RecentlyReviewedGamesTest extends TestCase
 {
     use DecodeJsonCapable, BadDataCapable;
 
-    const FIXTURE = "many-popular-games.json";
+    const FIXTURE = "many-recently-reviewed-games.json";
 
     /**
      * @test
      */
-    public function it_shows_popular_games()
+    public function it_shows_recently_reviewed_games()
     {
         Http::fake([
             "https://api-v3.igdb.com/games/" => Http::response($this->decodeJson(), 200, ["Headers"])
         ]);
 
-        Livewire::test(Popular::class)
+        Livewire::test(RecentlyReviewed::class)
             ->call("load")
-            ->assertSee("Marvel's Avengers")
-            ->assertSee("Necrobarista")
             ->assertSee("Factorio")
-            ->assertSee("Watch Dogs: Legion")
-            ->assertSee("Fae Tactics")
-            ->assertSee("Diabotical")
-            ->assertSee("Genshin Impact")
             ->assertSee("Ghost of Tsushima")
-            ->assertSee("Spelunky 2")
-            ->assertSee("Is It Wrong to Try to Pick Up Girls in a Dungeon? Infinite Combate")
-            ->assertSee("Röki")
-            ->assertSee("Spiritfarer")
+            ->assertSee("Fall Guys: Ultimate Knockout")
         ;
     }
 
@@ -59,20 +50,11 @@ class PopularGamesTest extends TestCase
             )
         ]);
 
-        Livewire::test(Popular::class)
+        Livewire::test(RecentlyReviewed::class)
             ->call("load")
-            ->assertSee("Marvel's Avengers")
-            ->assertSee("Necrobarista")
             ->assertSee("Factorio")
-            ->assertSee("Watch Dogs: Legion")
-            ->assertSee("Fae Tactics")
-            ->assertSee("Diabotical")
-            ->assertSee("Genshin Impact")
             ->assertSee("Ghost of Tsushima")
-            ->assertSee("Spelunky 2")
-            ->assertSee("Is It Wrong to Try to Pick Up Girls in a Dungeon? Infinite Combate")
-            ->assertSee("Röki")
-            ->assertSee("Spiritfarer")
+            ->assertSee("Fall Guys: Ultimate Knockout")
         ;
 
         Log::assertLogged("notice", function ($message, $context) {

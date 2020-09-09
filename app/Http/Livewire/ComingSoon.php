@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\BaseGame;
-use App\Game;
-use App\PopularGame;
+use App\Game\ComingSoonGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -13,13 +11,17 @@ use Livewire\Component;
 
 class ComingSoon extends Component
 {
+    use Formatable;
+
+    private $unformattedGames;
+
     public $comingSoon = [];
 
     public function load()
     {
         $today = Carbon::now()->timestamp;
 
-        $unformattedGames = Cache::remember("popular-games", 7, function () use ($today) {
+        $this->unformattedGames = Cache::remember("popular-games", 7, function () use ($today) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -34,16 +36,12 @@ class ComingSoon extends Component
                   ->json();
         });
 
-        $this->comingSoon = $this->format($unformattedGames)->toArray();
+        $this->comingSoon = $this->format()->toArray();
     }
 
-    private function format($unformattedGames): Collection
+    private function instanciateGame($unformattedGame)
     {
-        $result = [];
-        foreach ($unformattedGames as $data) {
-            $result[] = new PopularGame(new BaseGame($data));
-        }
-        return collect($result);
+        return new ComingSoonGame($unformattedGame);
     }
 
     public function render()

@@ -1,1 +1,1 @@
-["Tests\\Feature\\ShowSingleGameTest","Tests\\Feature\\ViewGameTest","Tests\\Feature\\PopularGamesTest","Tests\\Feature\\MostAnticipatedGamesTest"]
+["Tests\\Feature\\ShowSingleGameTest","Tests\\Feature\\ViewGameTest","Tests\\Feature\\PopularGamesTest","Tests\\Feature\\MostAnticipatedGamesTest","Tests\\Feature\\RecentlyReviewedGamesTest","Tests\\Feature\\ComingSoonGamesTest"]

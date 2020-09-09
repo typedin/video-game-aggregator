@@ -6,9 +6,12 @@ use App\Http\Livewire\MostAnticipated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\DecodeJsonCapable;
 use Tests\TestCase;
+use TiMacDonald\Log\LogFake;
 
 class MostAnticipatedGamesTest extends TestCase
 {
@@ -43,7 +46,12 @@ class MostAnticipatedGamesTest extends TestCase
 
     private function makeBadData($data)
     {
-        var_dump($data);
+        $badDataForAGame = [
+            "no-name" => "no-name",
+            "no-slug" => "no-slug"
+        ];
+
+        array_push($data, $badDataForAGame);
         return $data;
     }
 
@@ -52,6 +60,8 @@ class MostAnticipatedGamesTest extends TestCase
      */
     public function it_logs_error_when_wrong_data_has_been_retreived()
     {
+        Log::swap(new LogFake);
+
         Http::fake([
             "https://api-v3.igdb.com/games/" => Http::response(
                 $this->makeBadData($this->decodeJson()),
@@ -67,5 +77,12 @@ class MostAnticipatedGamesTest extends TestCase
             ->assertSee("Junkyard Simulator")
             ->assertSee("Tears of Avia")
         ;
+
+        Log::assertLogged("notice", function ($message, $context) {
+            return Str::contains(
+                $message,
+                "Trying to instanciate a game without a name"
+            );
+        });
     }
 }

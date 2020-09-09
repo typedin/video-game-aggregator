@@ -4,7 +4,7 @@ namespace App\Game;
 
 use App\Game\Exceptions\GameException;
 
-class AbstractGame
+class AbstractGame implements GameInterface
 {
     public $name;
     public $slug;

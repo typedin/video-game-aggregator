@@ -2,7 +2,7 @@
 @section("content")
   <div class="container px-4 mx-auto">
 
-    <livewire:popular-games>
+    <livewire:popular>
 
     <div class="flex flex-col my-10 lg:flex-row">
       <div class="w-full mr-0 recently-reviewed lg:w-3/4 lg:mr-32">

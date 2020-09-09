@@ -2,17 +2,19 @@
 
 namespace App\Http\Livewire;
 
-use App\Game\Exceptions\GameException;
-use App\Game\PopularGame as PopularGameAlias;
+use App\Game\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
-class PopularGames extends Component
+class Popular extends Component
 {
+    use Formatable;
+
+    private $unformattedGames;
+
     public $popularGames = [];
 
     public function load()
@@ -20,7 +22,7 @@ class PopularGames extends Component
         $before = Carbon::now()->subMonths(2)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
-        $unformattedGames = Cache::remember("popular-games", 60, function () use ($before, $after) {
+        $this->unformattedGames = Cache::remember("popular-games", 60, function () use ($before, $after) {
             return Http::withHeaders(config("services.igdb"))
                 ->withOptions([
                     "body" => "
@@ -36,19 +38,12 @@ class PopularGames extends Component
                 ->json();
         });
 
-        $this->popularGames = $this->format(collect($unformattedGames))->toArray();
+        $this->popularGames = $this->format()->toArray();
     }
 
-    private function format(Collection $unformattedGames): Collection
+    private function instanciateGame($unformattedGame)
     {
-        return $unformattedGames
-            ->map(function ($unformattedGame) {
-                try {
-                    return new PopularGameAlias($unformattedGame);
-                } catch (GameException $e) {
-                    Log::notice($e);
-                }
-            });
+        return new PopularGame($unformattedGame);
     }
 
     public function render()

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 7046,
+    "cover": {
+      "id": 84814,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1tfy.jpg"
+    },
+    "first_release_date": 1597363200,
+    "name": "Factorio",
+    "platforms": [
+      {
+        "id": 3,
+        "abbreviation": "Linux"
+      },
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 14,
+        "abbreviation": "Mac"
+      }
+    ],
+    "popularity": 25.96402750378672,
+    "rating": 83.6829842522666,
+    "rating_count": 85,
+    "slug": "factorio"
+  },
+  {
+    "id": 75235,
+    "cover": {
+      "id": 109855,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2crj.jpg"
+    },
+    "first_release_date": 1594944000,
+    "name": "Ghost of Tsushima",
+    "platforms": [
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 13.25912064918098,
+    "rating": 90.68042276383909,
+    "rating_count": 40,
+    "slug": "ghost-of-tsushima"
+  },
+  {
+    "id": 119313,
+    "cover": {
+      "id": 113695,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2fq7.jpg"
+    },
+    "first_release_date": 1596499200,
+    "name": "Fall Guys: Ultimate Knockout",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 5.457862054247628,
+    "rating": 75.3203194081105,
+    "rating_count": 55,
+    "slug": "fall-guys-ultimate-knockout"
+  },
+  {
+    "id": 119257,
+    "cover": {
+      "id": 79360,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1p8g.jpg"
+    },
+    "first_release_date": 1595894400,
+    "name": "Destroy All Humans!",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      },
+      {
+        "id": 170,
+        "abbreviation": "Stadia"
+      }
+    ],
+    "popularity": 3.897610335260958,
+    "rating": 69.9346719400686,
+    "rating_count": 8,
+    "slug": "destroy-all-humans--1"
+  }
+]

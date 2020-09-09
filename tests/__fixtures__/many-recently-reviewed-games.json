@@ -1,0 +1,74 @@
+[
+  {
+    "id": 7046,
+    "cover": {
+      "id": 84814,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1tfy.jpg"
+    },
+    "first_release_date": 1597363200,
+    "name": "Factorio",
+    "platforms": [
+      {
+        "id": 3,
+        "abbreviation": "Linux"
+      },
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 14,
+        "abbreviation": "Mac"
+      }
+    ],
+    "popularity": 25.96402750378672,
+    "rating": 83.6829842522666,
+    "rating_count": 85,
+    "slug": "factorio",
+    "summary": "You will be mining resources, researching technologies, building infrastructure, automating production and fighting enemies. Use your imagination to design your factory, combine simple elements into ingenious structures, apply management skills to keep it working and finally protect it from the creatures who don't really like you."
+  },
+  {
+    "id": 75235,
+    "cover": {
+      "id": 109855,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2crj.jpg"
+    },
+    "first_release_date": 1594944000,
+    "name": "Ghost of Tsushima",
+    "platforms": [
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 13.25912064918098,
+    "rating": 90.68042276383909,
+    "rating_count": 40,
+    "slug": "ghost-of-tsushima",
+    "summary": "The year is 1274. Samurai warriors are the legendary defenders of Japan — until the fearsome Mongol Empire invades the island of Tsushima, wreaking havoc and conquering the local population. As one of the last surviving samurai, you rise from the ashes to fight back. But, honorable tactics won’t lead you to victory. You must move beyond your samurai traditions to forge a new way of fighting — the way of the Ghost — as you wage an unconventional war for the freedom of Japan."
+  },
+  {
+    "id": 119313,
+    "cover": {
+      "id": 113695,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2fq7.jpg"
+    },
+    "first_release_date": 1596499200,
+    "name": "Fall Guys: Ultimate Knockout",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 5.457862054247628,
+    "rating": 75.3203194081105,
+    "rating_count": 55,
+    "slug": "fall-guys-ultimate-knockout",
+    "summary": "Fall Guys: Ultimate Knockout flings hordes of contestants together online in a mad dash through round after round of escalating chaos until one victor remains! Battle bizarre obstacles, shove through unruly competitors, and overcome the unbending laws of physics to avoid both humiliation and elimination. Leave your dignity at the door and prepare for hilarious failure in your quest for the crown!"
+  }
+]

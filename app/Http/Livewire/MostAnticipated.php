@@ -2,15 +2,21 @@
 
 namespace App\Http\Livewire;
 
+use App\Game\Exceptions\GameException;
 use App\Game\MostAnticipatedGame;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class MostAnticipated extends Component
 {
+    use Formatable;
+
+    private $unformattedGames;
+
     public $mostAnticipated = [];
 
     public function load()
@@ -18,7 +24,7 @@ class MostAnticipated extends Component
         $today = Carbon::now()->timestamp;
         $inFourMonths = Carbon::now()->addMonths(4)->timestamp;
 
-        $unformattedGames = Cache::remember("popular-games", 7, function () use ($today, $inFourMonths) {
+        $this->unformattedGames = Cache::remember("popular-games", 7, function () use ($today, $inFourMonths) {
             return Http::withHeaders(config("services.igdb"))
             ->withOptions([
                 "body" => "
@@ -33,14 +39,12 @@ class MostAnticipated extends Component
             ->json();
         });
 
-        $this->mostAnticipated = $this->format(collect($unformattedGames))->toArray();
+        $this->mostAnticipated = $this->format()->toArray();
     }
 
-    private function format(Collection $unformattedGames): Collection
+    private function instanciateGame($unformattedGame)
     {
-        return $unformattedGames->map(function ($unformattedGame) {
-            return new MostAnticipatedGame($unformattedGame);
-        });
+        return new MostAnticipatedGame($unformattedGame);
     }
 
     public function render()
