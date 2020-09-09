@@ -1,0 +1,320 @@
+[
+  {
+    "id": 26950,
+    "cover": {
+      "id": 111950,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2edq.jpg"
+    },
+    "first_release_date": 1599177600,
+    "name": "Marvel's Avengers",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      },
+      {
+        "id": 167
+      },
+      {
+        "id": 169
+      },
+      {
+        "id": 170,
+        "abbreviation": "Stadia"
+      }
+    ],
+    "popularity": 138.5250443735393,
+    "slug": "marvels-avengers"
+  },
+  {
+    "id": 26870,
+    "cover": {
+      "id": 98419,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co23xv.jpg"
+    },
+    "first_release_date": 1594944000,
+    "name": "Necrobarista",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 39,
+        "abbreviation": "iOS"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 130,
+        "abbreviation": "Switch"
+      }
+    ],
+    "popularity": 33.98817920143245,
+    "slug": "necrobarista"
+  },
+  {
+    "id": 7046,
+    "cover": {
+      "id": 84814,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1tfy.jpg"
+    },
+    "first_release_date": 1597363200,
+    "name": "Factorio",
+    "platforms": [
+      {
+        "id": 3,
+        "abbreviation": "Linux"
+      },
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 14,
+        "abbreviation": "Mac"
+      }
+    ],
+    "popularity": 25.96402750378672,
+    "rating": 83.6829842522666,
+    "slug": "factorio"
+  },
+  {
+    "id": 100413,
+    "cover": {
+      "id": 111897,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2ec9.jpg"
+    },
+    "first_release_date": 1603929600,
+    "name": "Watch Dogs: Legion",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      },
+      {
+        "id": 167
+      },
+      {
+        "id": 169
+      },
+      {
+        "id": 170,
+        "abbreviation": "Stadia"
+      }
+    ],
+    "popularity": 22.17484475767623,
+    "slug": "watch-dogs-legion"
+  },
+  {
+    "id": 26268,
+    "cover": {
+      "id": 82664,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1rs8.jpg"
+    },
+    "first_release_date": 1596153600,
+    "name": "Fae Tactics",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      }
+    ],
+    "popularity": 22.17484475767623,
+    "slug": "fae-tactics"
+  },
+  {
+    "id": 22384,
+    "cover": {
+      "id": 113871,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2fv3.jpg"
+    },
+    "first_release_date": 1599091200,
+    "name": "Diabotical",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      }
+    ],
+    "popularity": 22.17484475767623,
+    "slug": "diabotical"
+  },
+  {
+    "id": 119277,
+    "cover": {
+      "id": 74951,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1ltz.jpg"
+    },
+    "first_release_date": 1601251200,
+    "name": "Genshin Impact",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 34,
+        "abbreviation": "Android"
+      },
+      {
+        "id": 39,
+        "abbreviation": "iOS"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 130,
+        "abbreviation": "Switch"
+      }
+    ],
+    "popularity": 15.71094477901717,
+    "slug": "genshin-impact"
+  },
+  {
+    "id": 47160,
+    "cover": {
+      "id": 94222,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co20pa.jpg"
+    },
+    "first_release_date": 1596758400,
+    "name": "Is It Wrong to Try to Pick Up Girls in a Dungeon? Infinite Combate",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "i": 130,
+        "abbreviation": "Switch"
+      }
+    ],
+    "popularity": 15.71094477901717,
+    "slug": "is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-infinite-combate"
+  },
+  {
+    "id": 75235,
+    "cover": {
+      "id": 109855,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2crj.jpg"
+    },
+    "first_release_date": 1594944000,
+    "name": "Ghost of Tsushima",
+    "platforms": [
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 13.25912064918098,
+    "rating": 90.68042276383909,
+    "slug": "ghost-of-tsushima"
+  },
+  {
+    "id": 28528,
+    "cover": {
+      "id": 79355,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co1p8b.jpg"
+    },
+    "first_release_date": 1595462400,
+    "name": "Röki",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 14,
+        "abbreviation": "Mac"
+      },
+      {
+        "id": 130,
+        "abbreviation": "Switch"
+      }
+    ],
+    "popularity": 8.132579286796204,
+    "slug": "roki"
+  },
+  {
+    "id": 75239,
+    "cover": {
+      "id": 112974,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2f66.jpg"
+    },
+    "first_release_date": 1600128000,
+    "name": "Spelunky 2",
+    "platforms": [
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      }
+    ],
+    "popularity": 7.686793081371443,
+    "slug": "spelunky-2"
+  },
+  {
+    "id": 119304,
+    "cover": {
+      "id": 113263,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2fe7.jpg"
+    },
+    "first_release_date": 1597708800,
+    "name": "Spiritfarer",
+    "platforms": [
+      {
+        "id": 3,
+        "abbreviation": "Linux"
+      },
+      {
+        "id": 6,
+        "abbreviation": "PC"
+      },
+      {
+        "id": 14,
+        "abbreviation": "Mac"
+      },
+      {
+        "id": 48,
+        "abbreviation": "PS4"
+      },
+      {
+        "id": 49,
+        "abbreviation": "XONE"
+      },
+      {
+        "id": 130,
+        "abbreviation": "Switch"
+      }
+    ],
+    "popularity": 7.463899978659061,
+    "slug": "spiritfarer"
+  }
+]

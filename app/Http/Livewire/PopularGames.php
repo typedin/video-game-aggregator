@@ -2,9 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\BaseGame;
-use App\Game;
-use App\PopularGame;
+use App\Game\Exceptions\GameException;
+use App\Game\PopularGame;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -41,11 +40,17 @@ class PopularGames extends Component
 
     private function format($unformattedGames): Collection
     {
-        $result = [];
-        foreach ($unformattedGames as $data) {
-            $result[] = new PopularGame(new BaseGame($data));
+        $appleSauce = collect();
+
+        foreach ($unformattedGames[0] as $data) {
+            try {
+                $appleSauce->push(new \App\Game\PopularGame($data));
+            } catch (GameException $e) {
+                // TODO
+            }
         }
-        return collect($result);
+
+        return $appleSauce;
     }
 
     public function render()
