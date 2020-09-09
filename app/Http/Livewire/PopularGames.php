@@ -40,22 +40,12 @@ class PopularGames extends Component
 
     private function format($unformattedGames): Collection
     {
-        $appleSauce = collect();
         return collect($unformattedGames[0])->map(function ($dataForAGame) {
             try {
                 return new \App\Game\PopularGame($dataForAGame);
             } catch (GameException $e) {
             }
         });
-        foreach ($unformattedGames[0] as $data) {
-            try {
-                $appleSauce->push(new \App\Game\PopularGame($data));
-            } catch (GameException $e) {
-                // TODO
-            }
-        }
-
-        return $appleSauce;
     }
 
     public function render()
