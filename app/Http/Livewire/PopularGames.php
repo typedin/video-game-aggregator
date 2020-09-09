@@ -43,7 +43,7 @@ class PopularGames extends Component
         $appleSauce = collect();
         collect($unformattedGames[0])->map(function ($dataForAGame) {
             try {
-            } catch (Exception $e) {
+            } catch (GameException $e) {
             }
         });
         foreach ($unformattedGames[0] as $data) {
