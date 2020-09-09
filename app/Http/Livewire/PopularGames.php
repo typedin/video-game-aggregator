@@ -41,7 +41,7 @@ class PopularGames extends Component
     private function format($unformattedGames): Collection
     {
         $appleSauce = collect();
-        collect($unformattedGames[0])->map(function ($dataForAGame) {
+        return collect($unformattedGames[0])->map(function ($dataForAGame) {
             try {
                 return new \App\Game\PopularGame($dataForAGame);
             } catch (GameException $e) {
